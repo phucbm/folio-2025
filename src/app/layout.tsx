@@ -13,6 +13,7 @@ export const metadata: Metadata = {
 
 const bodyFont = Inter({
     subsets: ['latin', 'vietnamese'],
+    variable: '--font-inter'
 })
 
 export default async function RootLayout({children}) {

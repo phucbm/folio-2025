@@ -1,0 +1,8 @@
+@layer utilities {
+    .heading-1 {
+        @apply text-[1.4em] font-normal;
+    }
+    .heading-2 {
+        @apply text-[1.2em] font-normal;
+    }
+}

@@ -5,9 +5,14 @@ import {Tags} from "@/components/tags";
 
 const blogComponents = getBlogMDXComponents({
     h1: ({children}) => (
-        <h1 className="custom-h1">
+        <h1 className="heading-1">
             {children}
         </h1>
+    ),
+    h2: ({children}) => (
+        <h2 className="heading-2">
+            {children}
+        </h2>
     ),
     DateFormatter: ({date}) =>
         `Last updated at ${date.toLocaleDateString('en', {
