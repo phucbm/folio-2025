@@ -16,7 +16,9 @@ export function NavbarLink(props: Props) {
     return (
         <Link
             href={href}
-            className="no-underline hover:underline focus:underline aria-[current]:font-[600]"
+            className="no-underline hover:underline focus:underline font-[400] text-muted-foreground
+             aria-[current]:font-[500] aria-[current]:text-primary
+            "
             aria-current={href === pathname || undefined}
             target={target}
             {...props}

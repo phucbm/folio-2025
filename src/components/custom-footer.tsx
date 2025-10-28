@@ -6,27 +6,28 @@ import React from "react";
 const CustomFooter = async () => {
     return (
         <div className="custom-footer lg:py-24 py-12">
-            <div className="space-y-6">
+            <div className="space-y-2">
 
                 {/*row*/}
-                <div className="flex justify-between items-center gap-4 max-lg:flex-col">
+                <div className="flex justify-between items-center gap-4">
 
                     {/*col*/}
-                    <div className="flex gap-2 items-center">
+                    <div className="flex gap-2 items-center w-full">
                         <Navbar pageMap={await getPageMap()}/>
-                    </div>
-
-                    {/*col*/}
-                    <div className="flex gap-2 items-center">
-                        <div>
-                            © {new Date().getFullYear()} Felix
-                        </div>
-                        <ThemeSwitch/>
                     </div>
 
                     {/*<Search placeholder="Search posts..."/>*/}
 
                 </div>
+
+                {/*row*/}
+                <div className="flex gap-2 items-center">
+                    <div>
+                        © {new Date().getFullYear()} Felix
+                    </div>
+                    <ThemeSwitch/>
+                </div>
+
             </div>
         </div>
     );

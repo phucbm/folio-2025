@@ -31,7 +31,7 @@ const stars = ["✱", "✽", "✦", "✸", "✹", "✺"]
 
 export function Connect({items}: Props) {
     return (
-        <div className="w-full md:h-[400px] h-[300px] flex flex-col relative overflow-hidden border-b border-black">
+        <div className="w-full md:h-[400px] h-[300px] flex flex-col relative overflow-hidden border-b border-primary">
 
             <Gravity gravity={{x: 0, y: 1}} className="w-full flex-1">
 

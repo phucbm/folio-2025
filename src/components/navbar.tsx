@@ -19,7 +19,7 @@ export const Navbar: FC<NavbarProps> = ({children, pageMap, className}) => {
 
     return (
         <div
-            className={cn("flex items-center gap-3", className)}
+            className={cn("flex flex-wrap gap-x-3 w-full max-sm:grid max-sm:grid-cols-2", className)}
             data-pagefind-ignore="all"
         >
             {topLevelNavbarItems

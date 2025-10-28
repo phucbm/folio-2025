@@ -3,6 +3,7 @@ export default {
         type: 'page'
     },
     index: 'Home',
+    connect: "Connect",
     posts: {
         type: 'page',
         display: 'hidden',
@@ -15,7 +16,7 @@ export default {
     stats: "Stats",
     uses: "Uses",
     now: "Now",
-    connect: "Connect",
+    bookmarks: "Bookmarks",
     colophon: "Colophon",
     // rss: {
     //     href: "/rss.xml",
