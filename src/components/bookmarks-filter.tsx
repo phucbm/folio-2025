@@ -1,6 +1,6 @@
 'use client';
 
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {Bookmark} from "@/lib/discord";
 import {LinkBlock} from "@/components/link-block";
 import {Badge} from "@/components/ui/badge";
@@ -13,6 +13,25 @@ interface BookmarksFilterProps {
 
 export default function BookmarksFilter({bookmarks, newDaysThreshold = 3}: BookmarksFilterProps) {
     const [selectedTag, setSelectedTag] = useState<string>('');
+
+    // Read tag from URL hash on mount
+    useEffect(() => {
+        const hash = window.location.hash.slice(1); // Remove the '#'
+        if (hash) {
+            setSelectedTag(decodeURIComponent(hash));
+        }
+    }, []);
+
+    // Update URL hash when tag changes
+    const handleTagChange = (tag: string) => {
+        setSelectedTag(tag);
+
+        if (tag) {
+            window.history.pushState(null, '', `#${encodeURIComponent(tag)}`);
+        } else {
+            window.history.pushState(null, '', window.location.pathname);
+        }
+    };
 
     // Get unique tags
     const allTags = [...new Set(bookmarks.flatMap(b => b.tags))].sort();
@@ -45,7 +64,7 @@ export default function BookmarksFilter({bookmarks, newDaysThreshold = 3}: Bookm
             {/* Tag Filter */}
             <div className="mb-6 flex flex-wrap gap-2">
                 <Button
-                    onClick={() => setSelectedTag('')}
+                    onClick={() => handleTagChange('')}
                     variant={selectedTag === '' ? 'default' : 'outline'}
                     size="sm"
                     className="cursor-pointer"
@@ -57,7 +76,7 @@ export default function BookmarksFilter({bookmarks, newDaysThreshold = 3}: Bookm
                     return (
                         <Button
                             key={tag}
-                            onClick={() => setSelectedTag(tag)}
+                            onClick={() => handleTagChange(tag)}
                             variant={selectedTag === tag ? 'default' : 'outline'}
                             size="sm"
                         >
