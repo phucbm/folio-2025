@@ -14,6 +14,7 @@ export default {
     },
     stats: "Stats",
     uses: "Uses",
+    now: "Now",
     connect: "Connect",
     colophon: "Colophon",
     // rss: {
