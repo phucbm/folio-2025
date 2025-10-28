@@ -6,7 +6,7 @@ import {LinkBlockHover} from "@/components/link-block-hover";
 
 type Props = {
     title: React.ReactNode;
-    description: string;
+    description: React.ReactNode;
     href: string;
     openInNewTab?: boolean;
 };
@@ -25,7 +25,7 @@ export async function LinkBlock({title, description, href, openInNewTab = true}:
                 target={openInNewTab ? "_blank" : undefined}
                 rel={openInNewTab ? "noopener noreferrer" : undefined}
             >
-                <div className="font-[500] text-black dark:text-white">
+                <div className="font-[500] text-black dark:text-white mb-1">
                     {title}
                 </div>
                 <div className="text-muted-foreground">

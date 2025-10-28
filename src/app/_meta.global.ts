@@ -12,7 +12,7 @@ export default {
             // }
         }
     },
-    repositories: "Repositories",
+    stats: "Stats",
     connect: "Connect",
     colophon: "Colophon",
     // rss: {

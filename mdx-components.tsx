@@ -7,6 +7,7 @@ import {LinkBlock} from "@/components/link-block";
 import {Clients} from "@/components/clients";
 import {Connect} from "@/components/connect";
 import NpmPackages from "@/components/npm-packages";
+import JsDelivrPackages from "@/components/jsdelivr";
 
 const blogComponents = getBlogMDXComponents({
     h1: ({children}) => (
@@ -53,6 +54,7 @@ export function useMDXComponents() {
         Tags: Tags,
         GitHubRepos: GitHubRepos,
         NpmPackages: NpmPackages,
+        JsDelivrPackages: JsDelivrPackages,
         LinkBlock: LinkBlock,
         Clients: Clients,
         Connect: Connect,

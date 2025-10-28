@@ -148,9 +148,9 @@ export default async function NpmPackages({
                             <div className="flex items-center gap-3">
                                 {pkg.name}
                                 <span className="flex gap-1 items-center text-sm">
-                                    <IconDownload className="w-4"/>
-                                    {formatDownloads(pkg.downloads)}
-                                    {/*{periodText}*/}
+                                    <IconDownload className="w-4 text-green-600"/>
+                                    <span>{formatDownloads(pkg.downloads)}</span>
+                                    {periodText}
                                 </span>
                             </div>
                         }
