@@ -35,11 +35,13 @@ export default async function RootLayout({children}) {
         <body className="min-h-screen">
         <div className="article-container">
             <Layout>
-                <CustomHeader/>
+                <div className="min-h-screen flex flex-col justify-between">
+                    <CustomHeader/>
 
-                {children}
+                    {children}
 
-                <CustomFooter/>
+                    <CustomFooter/>
+                </div>
             </Layout>
         </div>
         </body>

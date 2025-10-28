@@ -13,6 +13,7 @@ export default {
         }
     },
     repositories: "Repositories",
+    connect: "Connect",
     colophon: "Colophon",
     // rss: {
     //     href: "/rss.xml",
