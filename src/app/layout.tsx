@@ -31,7 +31,10 @@ export default async function RootLayout({children}) {
 
             className={bodyFont.className}
         >
-        <Head backgroundColor={{dark: '#15120d', light: '#faf5e9'}}/>
+        <Head backgroundColor={{dark: '#15120d', light: '#faf5e9'}}>
+            <script defer src="https://cloud.umami.is/script.js"
+                    data-website-id="f14c0833-d850-4d09-9c74-95cc97d95dc0"></script>
+        </Head>
         <body className="min-h-screen">
         <div className="article-container">
             <Layout>
