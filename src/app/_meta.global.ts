@@ -13,6 +13,7 @@ export default {
         }
     },
     stats: "Stats",
+    uses: "Uses",
     connect: "Connect",
     colophon: "Colophon",
     // rss: {
