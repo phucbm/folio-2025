@@ -1,4 +1,6 @@
 import {cache} from 'react'
+import {LinkBlock} from "@/components/link-block";
+import {IconStar} from "@tabler/icons-react";
 
 interface Repo {
     id: number
@@ -40,12 +42,17 @@ const getGitHubRepos = cache(async (username: string, lastUpdatedMonths: number 
             return updatedDate >= cutoffDate
         })
 
-        // Sort by stars and take top 10
-        const sortedByStars = recentRepos
-            .sort((a, b) => b.stargazers_count - a.stargazers_count)
-            .slice(0, max)
+        // Sort by stars first (descending), then by last update (descending)
+        return recentRepos
+            .sort((a, b) => {
+                // First compare by stars
+                const starDiff = b.stargazers_count - a.stargazers_count
+                if (starDiff !== 0) return starDiff
 
-        return sortedByStars
+                // If stars are equal, compare by update date
+                return new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
+            })
+            .slice(0, max)
     } catch (error) {
         console.error('Error fetching GitHub repos:', error)
         return []
@@ -60,42 +67,18 @@ export default async function GitHubRepos({username, lastUpdatedMonths = 12, max
     }
 
     return (
-        <ul className="space-y-4 not-prose">
+        <ul className="space-y-8 not-prose pt-4">
             {repos.map(repo => (
                 <li key={repo.id} className="">
-                    <div className="flex items-start justify-between gap-4">
-                        <div className="flex-1">
-                            <h3 className="heading-2 flex gap-2 items-center">
-                                <a
-                                    href={repo.html_url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="hover:underline"
-                                >
-                                    {repo.name}
-                                </a>
-                                <div className="flex items-center gap-1 text-sm">
-                                    <span>⭐</span>
-                                    <span>{repo.stargazers_count}</span>
-                                </div>
-                            </h3>
-
-                            {repo.description && (
-                                <p className="text-gray-600 mt-1">{repo.description}</p>
-                            )}
-
-                            {repo.homepage && (
-                                <a
-                                    href={repo.homepage}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-blue-600 hover:underline text-sm mt-2 inline-block"
-                                >
-                                    🔗 Website
-                                </a>
-                            )}
+                    <LinkBlock title={
+                        <div className="flex items-center gap-3">
+                            {repo.name}
+                                <span className="flex gap-1 items-center text-sm"><IconStar
+                                    className="w-4"/> {repo.stargazers_count}</span>
                         </div>
-                    </div>
+                    }
+                               description={repo.description}
+                               href={repo.html_url}/>
                 </li>
             ))}
         </ul>

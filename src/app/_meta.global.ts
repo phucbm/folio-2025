@@ -12,6 +12,7 @@ export default {
             // }
         }
     },
+    repositories: "Repositories",
     colophon: "Colophon",
     rss: {
         href: "/rss.xml",

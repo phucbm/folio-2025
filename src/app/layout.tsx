@@ -8,7 +8,10 @@ import {Layout} from "nextra-theme-blog";
 import {Inter} from 'next/font/google';
 
 export const metadata: Metadata = {
-    title: 'Nextra Blog'
+    title: {
+        absolute: '',
+        template: '%s - @phucbm'
+    }
 }
 
 const bodyFont = Inter({

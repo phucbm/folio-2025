@@ -1,3 +1,7 @@
+.x\:prose {
+    --tw-prose-body:var(--foreground);
+}
+
 @layer utilities {
     .heading-1 {
         @apply text-[1.5em] font-normal;
