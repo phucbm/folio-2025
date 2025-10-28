@@ -8,16 +8,26 @@ const withNextra = nextra({
 // You can include other Next.js configuration options here, in addition to Nextra settings:
 export default withNextra({
     // ... Other Next.js config options
-    webpack: (config, {isServer}) => {
-        if(isServer){
-            config.externals.push({
-                'utf-8-validate': 'commonjs utf-8-validate',
-                'bufferutil': 'commonjs bufferutil',
-                'zlib-sync': 'commonjs zlib-sync',
-            });
-        }
-        return config;
+
+    images: {
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: '**', // Allow all HTTPS domains
+            },
+        ],
     },
+
+    // webpack: (config, {isServer}) => {
+    //     if(isServer){
+    //         config.externals.push({
+    //             'utf-8-validate': 'commonjs utf-8-validate',
+    //             'bufferutil': 'commonjs bufferutil',
+    //             'zlib-sync': 'commonjs zlib-sync',
+    //         });
+    //     }
+    //     return config;
+    // },
 
 
     async rewrites(){

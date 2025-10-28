@@ -3,10 +3,12 @@
 import {useState} from 'react';
 import {Bookmark} from "@/lib/discord";
 import {LinkBlock} from "@/components/link-block";
+import {Badge} from "@/components/ui/badge";
+import {Button} from "@/components/ui/button";
 
 interface BookmarksFilterProps {
     bookmarks: Bookmark[];
-    newDaysThreshold?: number; // Allow customization of "new" threshold
+    newDaysThreshold?: number;
 }
 
 export default function BookmarksFilter({bookmarks, newDaysThreshold = 3}: BookmarksFilterProps) {
@@ -20,49 +22,47 @@ export default function BookmarksFilter({bookmarks, newDaysThreshold = 3}: Bookm
         ? bookmarks.filter(bookmark => bookmark.tags.includes(selectedTag))
         : bookmarks;
 
-    // Helper function to check if bookmark is new
-    const isNew = (timestamp: Date) => {
-        const now = new Date();
-        const diffTime = Math.abs(now.getTime() - new Date(timestamp).getTime());
-        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-        return diffDays <= newDaysThreshold;
-    };
-
-    // Helper function to check if bookmark was added today
-    const isToday = (timestamp: Date) => {
+    // Helper function to check if bookmark is newly added
+    const isNewlyAdded = (timestamp: Date) => {
         const now = new Date();
         const bookmarkDate = new Date(timestamp);
-        return now.toDateString() === bookmarkDate.toDateString();
+        const diffHours = (now.getTime() - bookmarkDate.getTime()) / (1000 * 60 * 60);
+        return diffHours <= (newDaysThreshold * 24);
+    };
+
+    // Format date for title attribute
+    const formatDate = (timestamp: Date) => {
+        const date = new Date(timestamp);
+        return `Added on ${date.toLocaleDateString('en-US', {
+            day: 'numeric',
+            month: 'short',
+            year: 'numeric'
+        })}`;
     };
 
     return (
         <div>
             {/* Tag Filter */}
             <div className="mb-6 flex flex-wrap gap-2">
-                <button
+                <Button
                     onClick={() => setSelectedTag('')}
-                    className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
-                        selectedTag === ''
-                            ? 'bg-blue-500 text-white'
-                            : 'bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700'
-                    }`}
+                    variant={selectedTag === '' ? 'default' : 'outline'}
+                    size="sm"
+                    className="cursor-pointer"
                 >
                     All ({bookmarks.length})
-                </button>
+                </Button>
                 {allTags.map(tag => {
                     const count = bookmarks.filter(b => b.tags.includes(tag)).length;
                     return (
-                        <button
+                        <Button
                             key={tag}
                             onClick={() => setSelectedTag(tag)}
-                            className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
-                                selectedTag === tag
-                                    ? 'bg-blue-500 text-white'
-                                    : 'bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700'
-                            }`}
+                            variant={selectedTag === tag ? 'default' : 'outline'}
+                            size="sm"
                         >
                             {tag} ({count})
-                        </button>
+                        </Button>
                     );
                 })}
             </div>
@@ -75,39 +75,33 @@ export default function BookmarksFilter({bookmarks, newDaysThreshold = 3}: Bookm
             ) : (
                 <ul className="space-y-8 not-prose pt-4">
                     {filteredBookmarks.map((bookmark) => (
-                        <li key={bookmark.id}>
+                        <li key={bookmark.id} title={formatDate(bookmark.timestamp)}>
                             <LinkBlock
+                                showThumbnail={true}
                                 title={
                                     <div className="flex items-center gap-2 flex-wrap">
                                         <span className="break-all">{bookmark.threadName}</span>
 
-                                        {/* Time-based badges */}
-                                        {isToday(bookmark.timestamp) && (
-                                            <span
-                                                className="px-2 py-0.5 text-xs font-medium bg-green-100 text-green-800 rounded-full dark:bg-green-900 dark:text-green-200">
-                                                Added today
-                                            </span>
-                                        )}
-                                        {!isToday(bookmark.timestamp) && isNew(bookmark.timestamp) && (
-                                            <span
-                                                className="px-2 py-0.5 text-xs font-medium bg-orange-100 text-orange-800 rounded-full dark:bg-orange-900 dark:text-orange-200">
-                                                New
-                                            </span>
+                                        {/* Newly added badge */}
+                                        {isNewlyAdded(bookmark.timestamp) && (
+                                            <Badge variant="default" className="bg-green-500 hover:bg-green-600">
+                                                Just added
+                                            </Badge>
                                         )}
 
                                         {/* Tag badges */}
-                                        {bookmark.tags.map((tag) => (
-                                            <span
-                                                key={tag}
-                                                className="px-2 py-0.5 text-xs font-medium bg-blue-100 text-blue-800 rounded-full dark:bg-blue-900 dark:text-blue-200"
-                                            >
-                                                {tag}
-                                            </span>
-                                        ))}
+                                        <div className="inline-flex gap-1">
+                                            {bookmark.tags.map((tag) => (
+                                                <Badge key={tag} variant="secondary">
+                                                    {tag}
+                                                </Badge>
+                                            ))}
+                                        </div>
                                     </div>
                                 }
-                                description={bookmark.content}
+                                description={ <span className="wrap-break-word">{bookmark.content}</span>}
                                 href={bookmark.url || '#'}
+                                thumbnail={bookmark.thumbnail}
                             />
                         </li>
                     ))}

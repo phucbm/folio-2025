@@ -6,6 +6,7 @@ export interface Bookmark {
     timestamp: Date;
     author: string;
     threadName: string;
+    thumbnail?: string | null;
 }
 
 interface DiscordThread {
@@ -126,8 +127,8 @@ export async function getDiscordBookmarks(): Promise<Bookmark[]> {
             );
 
             if (messagesResponse.ok) {
-                const messages: DiscordMessage[] = await messagesResponse.json();
-                const firstMessage = messages[0]; // Get the first (original) message
+                const messages: any[] = await messagesResponse.json();
+                const firstMessage = messages[0];
 
                 if (firstMessage) {
                     // Extract URL from thread name or message content
@@ -141,6 +142,11 @@ export async function getDiscordBookmarks(): Promise<Bookmark[]> {
                         .map(tagId => tagMap.get(tagId))
                         .filter((name): name is string => name !== undefined);
 
+                    // Get thumbnail from embeds
+                    const thumbnail = firstMessage.embeds?.[0]?.thumbnail?.url ||
+                        firstMessage.embeds?.[0]?.image?.url ||
+                        null;
+
                     allBookmarks.push({
                         id: thread.id,
                         content: firstMessage.content,
@@ -149,6 +155,7 @@ export async function getDiscordBookmarks(): Promise<Bookmark[]> {
                         timestamp: new Date(firstMessage.timestamp),
                         author: firstMessage.author.username,
                         threadName: thread.name,
+                        thumbnail: thumbnail,
                     });
                 }
             }
