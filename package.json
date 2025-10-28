@@ -8,6 +8,7 @@
   "dependencies": {
     "@giscus/react": "^3.1.0",
     "@gsap/react": "^2.1.2",
+    "@next/third-parties": "^16.0.0",
     "@radix-ui/react-slot": "^1.2.3",
     "@tabler/icons-react": "^3.35.0",
     "@types/matter-js": "^0.20.2",

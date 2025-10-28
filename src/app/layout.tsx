@@ -6,6 +6,7 @@ import CustomHeader from "@/components/custom-header";
 import {Metadata} from "next";
 import {Layout} from "nextra-theme-blog";
 import {Inter} from 'next/font/google';
+import {GoogleAnalytics} from '@next/third-parties/google'
 
 export const metadata: Metadata = {
     title: {
@@ -48,6 +49,7 @@ export default async function RootLayout({children}) {
             </Layout>
         </div>
         </body>
+        <GoogleAnalytics gaId="G-HXCF8TGQLN"/>
         </html>
     )
 }
