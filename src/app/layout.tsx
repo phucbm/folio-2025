@@ -30,13 +30,15 @@ export default async function RootLayout({children}) {
         >
         <Head backgroundColor={{dark: '#15120d', light: '#faf5e9'}}/>
         <body className="min-h-screen">
-        <Layout>
-            <CustomHeader/>
+        <div className="article-container">
+            <Layout>
+                <CustomHeader/>
 
-            {children}
+                {children}
 
-            <CustomFooter/>
-        </Layout>
+                <CustomFooter/>
+            </Layout>
+        </div>
         </body>
         </html>
     )

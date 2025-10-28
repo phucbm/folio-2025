@@ -1,5 +1,5 @@
-import type {PageMapItem} from 'nextra'
-import {normalizePages} from 'nextra/normalize-pages'
+import type {MenuItem, PageMapItem} from 'nextra'
+import {normalizePages, PageItem} from 'nextra/normalize-pages'
 import type {FC, ReactNode} from 'react'
 import {NavbarLink} from './navbar-link'
 import {cn} from "@/lib/utils";
@@ -9,27 +9,36 @@ type NavbarProps = {
     pageMap: PageMapItem[];
     className?: string;
 }
+type ExtendedNavbarItem = (PageItem | MenuItem) & {
+    href?: string;
+    target?: string;
+}
 
 export const Navbar: FC<NavbarProps> = ({children, pageMap, className}) => {
     const {topLevelNavbarItems} = normalizePages({list: pageMap, route: '/'})
+
     return (
         <div
             className={cn("flex items-center gap-3", className)}
             data-pagefind-ignore="all"
         >
-            {topLevelNavbarItems.map(nav => (
-                <NavbarLink key={nav.route} href={nav.route}>
-                    {nav.title}
-                </NavbarLink>
-            ))}
-            {children}
+            {topLevelNavbarItems
+                .filter(item => item.display !== "hidden")
+                .map((nav) => {
+                    const extendedNav = nav as ExtendedNavbarItem;
+                    const href = ('route' in extendedNav ? extendedNav.route : extendedNav.href) || '';
 
-            <NavbarLink href="/rss.xml" target="_blank">
-                RSS
-            </NavbarLink>
-            <NavbarLink href="https://github.com/phucbm/nextra-blog-starter" target="_blank">
-                GitHub
-            </NavbarLink>
+                    return (
+                        <NavbarLink
+                            key={href}
+                            href={href}
+                            target={extendedNav.target}
+                        >
+                            {extendedNav.title}
+                        </NavbarLink>
+                    );
+                })}
+            {children}
         </div>
     )
 }

@@ -2,6 +2,8 @@ import {useMDXComponents as getBlogMDXComponents} from 'nextra-theme-blog'
 import {useMDXComponents as getNextraComponents} from 'nextra/mdx-components'
 import {Posts} from "@/components/posts";
 import {Tags} from "@/components/tags";
+import {GitHubStars} from "@/components/github-stars";
+import GitHubRepos from "@/components/github-repos";
 
 const blogComponents = getBlogMDXComponents({
     h1: ({children}) => (
@@ -11,6 +13,11 @@ const blogComponents = getBlogMDXComponents({
     ),
     h2: ({children}) => (
         <h2 className="heading-2">
+            {children}
+        </h2>
+    ),
+    h3: ({children}) => (
+        <h2 className="heading-3">
             {children}
         </h2>
     ),
@@ -26,11 +33,11 @@ const blogComponents = getBlogMDXComponents({
 const defaultComponents = getNextraComponents({
     wrapper({children, toc}) {
         return (
-            <>
+            <div className="content-wrapper">
                 {children}
 
                 {/*<TOC toc={toc}/>*/}
-            </>
+            </div>
         )
     }
 })
@@ -41,5 +48,7 @@ export function useMDXComponents() {
         ...defaultComponents,
         Posts: Posts,
         Tags: Tags,
+        GitHubStars: GitHubStars,
+        GitHubRepos: GitHubRepos,
     }
 }

@@ -1,0 +1,10 @@
+.article-container > article.x\:container {
+    @apply max-w-[700px] py-0;
+}
+
+.content-wrapper > :first-child {
+    @apply mt-0;
+}
+.content-wrapper > :last-child {
+    @apply mb-0;
+}
