@@ -11,8 +11,8 @@ type Props = {
     openInNewTab?: boolean;
 };
 
-export async function LinkBlock({title, description, href, openInNewTab = true}: Props) {
-    const isExternal = await isExternalLink(href);
+export function LinkBlock({title, description, href, openInNewTab = true}: Props) {
+    const isExternal = isExternalLink(href);
     if (typeof openInNewTab !== "boolean" && isExternal === true) {
         openInNewTab = true;
     }

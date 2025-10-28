@@ -1,10 +1,8 @@
-import {headers} from 'next/headers';
-
 /**
  * Check if a URL is external (different domain from current site)
  * Works in both client and server environments
  */
-export async function isExternalLink(href: string, currentHostname?: string): Promise<boolean> {
+export function isExternalLink(href: string, currentHostname?: string): boolean {
     try {
         // Handle relative URLs - they're internal
         if (href.startsWith('/') || href.startsWith('#') || href.startsWith('?')) {
@@ -12,7 +10,7 @@ export async function isExternalLink(href: string, currentHostname?: string): Pr
         }
 
         // Parse the URL
-        const url = new URL(href, 'https://dummy.com');
+        const url = new URL(href, typeof window !== 'undefined' ? window.location.href : 'https://dummy.com');
 
         // If no hostname in URL (relative), it's internal
         if (!url.hostname || url.hostname === 'dummy.com') {
@@ -23,13 +21,13 @@ export async function isExternalLink(href: string, currentHostname?: string): Pr
         let hostname = currentHostname;
 
         if (!hostname) {
-            // Server-side: get from headers
-            if (typeof window === 'undefined') {
-                const headersList = await headers();
-                hostname = headersList.get('host') || '';
-            } else {
-                // Client-side: get from window
+            // Client-side: get from window
+            if (typeof window !== 'undefined') {
                 hostname = window.location.hostname;
+            } else {
+                // Server-side: return true as fallback (safer to assume external)
+                // Or you can pass hostname as a prop
+                return true;
             }
         }
 
