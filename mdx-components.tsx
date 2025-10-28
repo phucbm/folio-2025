@@ -5,6 +5,7 @@ import {Tags} from "@/components/tags";
 import {GitHubStars} from "@/components/github-stars";
 import GitHubRepos from "@/components/github-repos";
 import {LinkBlock} from "@/components/link-block";
+import {Clients} from "@/components/clients";
 
 const blogComponents = getBlogMDXComponents({
     h1: ({children}) => (
@@ -52,5 +53,6 @@ export function useMDXComponents() {
         GitHubStars: GitHubStars,
         GitHubRepos: GitHubRepos,
         LinkBlock: LinkBlock,
+        Clients: Clients,
     }
 }
