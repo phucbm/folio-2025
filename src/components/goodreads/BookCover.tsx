@@ -54,6 +54,9 @@ export function BookCover({
     );
   }
 
+  // Check if it's a local image (starts with /)
+  const isLocal = coverUrl.startsWith('/');
+
   return (
     <div className="relative rounded-sm overflow-hidden shadow-md hover:shadow-xl transition-shadow">
       <Image
@@ -64,6 +67,7 @@ export function BookCover({
         className="object-cover"
         priority={priority}
         onError={() => setImageError(true)}
+        unoptimized={isLocal} // Don't optimize local images
       />
     </div>
   );
