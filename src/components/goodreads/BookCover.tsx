@@ -4,71 +4,60 @@ import Image from 'next/image';
 import { useState } from 'react';
 
 interface BookCoverProps {
-  coverUrl: string | null;
-  title: string;
-  author: string;
-  size?: 'small' | 'medium' | 'large';
-  priority?: boolean;
+    coverUrl: string | null;
+    title: string;
+    author: string;
+    priority?: boolean;
 }
 
 /**
  * Book Cover Component (Client Component)
- * 
- * Displays book cover image
+ *
+ * Displays book cover image with fixed aspect ratio
  * Falls back to placeholder if image not found or fails to load
  */
 export function BookCover({
-  coverUrl,
-  title,
-  author,
-  size = 'medium',
-  priority = false,
-}: BookCoverProps) {
-  const [imageError, setImageError] = useState(false);
+                              coverUrl,
+                              title,
+                              author,
+                              priority = false,
+                          }: BookCoverProps) {
+    const [imageError, setImageError] = useState(false);
 
-  // Size configurations
-  const sizeConfig = {
-    small: { width: 80, height: 120 },
-    medium: { width: 128, height: 192 },
-    large: { width: 200, height: 300 },
-  };
+    // Show placeholder if no cover URL or image failed to load
+    if (!coverUrl || imageError) {
+        return (
+            <div
+                className="w-full aspect-[2/3] flex flex-col items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 border border-gray-300 rounded-sm shadow-sm"
+            >
+                <div className="text-center px-2">
+                    <div className="text-xs font-medium text-gray-600 line-clamp-3 mb-1">
+                        {title}
+                    </div>
+                    <div className="text-xs text-gray-500 line-clamp-2">
+                        {author}
+                    </div>
+                </div>
+            </div>
+        );
+    }
 
-  const { width, height } = sizeConfig[size];
+    // Check if it's a local image (starts with /)
+    const isLocal = coverUrl.startsWith('/');
 
-  // Show placeholder if no cover URL or image failed to load
-  if (!coverUrl || imageError) {
     return (
-      <div
-        className="flex flex-col items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 border border-gray-300 rounded-sm shadow-sm"
-        style={{ width, height }}
-      >
-        <div className="text-center px-2">
-          <div className="text-xs font-medium text-gray-600 line-clamp-3 mb-1">
-            {title}
-          </div>
-          <div className="text-xs text-gray-500 line-clamp-2">
-            {author}
-          </div>
+        <div
+            className="w-full aspect-[2/3] relative rounded-sm overflow-hidden shadow-md hover:shadow-xl transition-shadow bg-gray-100"
+        >
+            <Image
+                src={coverUrl}
+                alt={`Cover of ${title} by ${author}`}
+                fill
+                className="object-contain w-full h-full m-0"
+                priority={priority}
+                onError={() => setImageError(true)}
+                unoptimized={isLocal}
+            />
         </div>
-      </div>
     );
-  }
-
-  // Check if it's a local image (starts with /)
-  const isLocal = coverUrl.startsWith('/');
-
-  return (
-    <div className="relative rounded-sm overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-      <Image
-        src={coverUrl}
-        alt={`Cover of ${title} by ${author}`}
-        width={width}
-        height={height}
-        className="object-cover"
-        priority={priority}
-        onError={() => setImageError(true)}
-        unoptimized={isLocal} // Don't optimize local images
-      />
-    </div>
-  );
 }

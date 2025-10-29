@@ -17,6 +17,7 @@ export default {
     uses: "Uses",
     now: "Now",
     bookmarks: "Bookmarks",
+    goodreads: "Goodreads",
     colophon: "Colophon",
     // rss: {
     //     href: "/rss.xml",
