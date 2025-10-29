@@ -9,6 +9,7 @@ import {Connect} from "@/components/connect";
 import NpmPackages from "@/components/npm-packages";
 import JsDelivrPackages from "@/components/jsdelivr";
 import Bookmarks from "@/components/bookmarks";
+import BooksPage from "@/components/goodreads/page";
 
 const blogComponents = getBlogMDXComponents({
     h1: ({children}) => (
@@ -60,5 +61,6 @@ export function useMDXComponents() {
         Clients: Clients,
         Connect: Connect,
         Bookmarks: Bookmarks,
+        BooksPage: BooksPage,
     }
 }
