@@ -7,7 +7,7 @@ import {IconMoodPuzzled} from "@tabler/icons-react";
 
 type Props = {
     title: React.ReactNode;
-    description: React.ReactNode;
+    description?: React.ReactNode;
     href: string;
     openInNewTab?: boolean;
     thumbnail?: string | null;
@@ -59,12 +59,15 @@ export function LinkBlock({
                 )}
 
                 <div className={shouldShowThumbnail ? "w-[80%] pl-2 md:pl-4" : "w-full"}>
-                    <div className="font-[500] text-black dark:text-white mb-1">
+                    <div className="font-[500] text-black dark:text-white">
                         {title}
                     </div>
-                    <div className="text-muted-foreground">
-                        {description}
-                    </div>
+                    {
+                        description &&
+                        <div className="text-muted-foreground pt-1">
+                            {description}
+                        </div>
+                    }
                 </div>
             </Link>
         </LinkBlockHover>
