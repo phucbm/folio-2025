@@ -3,6 +3,7 @@ import {useMDXComponents as getMDXComponents} from '../../../mdx-components'
 import type {Metadata} from 'next'
 import React from "react";
 import {PostDetail} from "@/components/post-detail";
+import {FrontMatter} from "@/lib/get-posts";
 
 // Define types for params and metadata
 type PageParams = {
@@ -11,12 +12,6 @@ type PageParams = {
 
 type PageProps = {
     params: Promise<PageParams>
-}
-
-export type CustomMetadata = Metadata & {
-    date?: string
-    enableComment?: boolean
-    tags?: string[]
 }
 
 export const generateStaticParams = generateStaticParamsFor('mdxPath')
@@ -35,7 +30,7 @@ export default async function Page(props: PageProps) {
     const {default: MDXContent, toc, metadata} = result as {
         default: React.ComponentType<any>
         toc: any
-        metadata: CustomMetadata
+        metadata: Metadata
     }
 
     const isPostPage = params.mdxPath && params.mdxPath.length > 1 && params.mdxPath.includes('posts');
@@ -45,7 +40,7 @@ export default async function Page(props: PageProps) {
         <Wrapper toc={toc} metadata={metadata}>
             {
                 isPostPage &&
-                <PostDetail metadata={metadata}>
+                <PostDetail metadata={metadata as FrontMatter}>
                     <MDXContent {...props} params={params}/>
                 </PostDetail>
             }

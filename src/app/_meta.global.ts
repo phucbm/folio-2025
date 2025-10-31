@@ -3,16 +3,16 @@ export default {
         type: 'page'
     },
     index: 'Home',
-    connect: "Connect",
     posts: {
         type: 'page',
-        display: 'hidden',
+        // display: 'hidden',
         items: {
             // draft: {
             //     display: 'hidden'
             // }
         }
     },
+    connect: "Connect",
     stats: "Stats",
     uses: "Uses",
     now: "Now",

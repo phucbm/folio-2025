@@ -1,25 +1,33 @@
 import {normalizePages} from 'nextra/normalize-pages'
 import {getPageMap} from 'nextra/page-map'
+import type {Metadata} from "next";
 
 type GetPostsOptions = {
     first?: number;
     tags?: string[];
     excludeByTitle?: string;
 };
+
+export type CustomMetadata = {
+    enableComment: boolean;
+    enableRelatedPost: boolean;
+}
+
+export type FrontMatter = Metadata & CustomMetadata & {
+    title: string;
+    date: string;
+    tags: string[];
+    description: string;
+    filePath: string;
+    timestamp: number;
+}
+
 export type PostItem = {
     title: string;
     name: string;
     route: string;
     type: string;
-    frontMatter: {
-        title: string;
-        date: string;
-        tags: string[];
-        description: string;
-        enableComment: boolean;
-        filePath: string;
-        timestamp: number;
-    }
+    frontMatter: FrontMatter;
 }
 
 export async function getPosts(options: GetPostsOptions = {}): Promise<PostItem[]> {
