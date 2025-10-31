@@ -10,6 +10,7 @@ import NpmPackages from "@/components/npm-packages";
 import JsDelivrPackages from "@/components/jsdelivr";
 import Bookmarks from "@/components/bookmarks";
 import BooksPage from "@/components/goodreads/page";
+import {Callout} from 'nextra/components'
 
 const blogComponents = getBlogMDXComponents({
     h1: ({children}) => (
@@ -52,6 +53,7 @@ export function useMDXComponents() {
     return {
         ...blogComponents,
         ...defaultComponents,
+        Callout: Callout,
         Posts: Posts,
         Tags: Tags,
         GitHubRepos: GitHubRepos,

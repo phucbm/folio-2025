@@ -1,0 +1,46 @@
+---
+title: How I Built My Blog
+date: '2025-10-31'
+tags: ['General']
+description: 2025 Next.js MDX Edition - Less maintaining, more writing
+---
+
+Took me less than a week to deploy this new version of my blog. If you're interested in the technologies behind this blog, or planning
+to craft your own blog. This post hopefully be quite helpful!
+
+<Callout>
+    This tech stack give me the precious time to focus on writing, other than maintaining the code.
+</Callout>
+
+
+## The stack
+This blog is relied solely on Next.js with MDX supported from Nextra.
+
+- **Next.js** v16.0.1
+- **React** v19.2.0
+- **Nextra** v4.6.0
+- **TailwindCSS** v4.1.16
+- **PageFind** v1.4.0
+
+The previous versions of my website were created with WordPress framework which costed quite a lot of effort to maintain.
+Then I switch to a much more simpler - Jekyll and deployed as a static site on GitHub Pages. But that was just so limited as Jekyll using pure markdown,
+while I wanted to have the ability to create interactive elements right inside my post. After a few years of abandon, I get to know Nextra.
+
+I have been using Nextra to create an internal documentation site for my team. My mind was kind of exploded the moment I know react component can live
+inside a MD file. That's when I know this is when I can rebuild my blog.
+
+## The CMS
+
+There's actually no CMS, or the real CMS.
+If there are no new component needed in a post,
+I can just open my GitHub repo and write directly there with all editor support for markdown available.
+In this case, GitHub can be considered as a CMS itself.
+
+All the content on this site are written in MDX files.
+If you’re not familiar with MDX, it’s a combination of Markdown and JSX. And in order to have MDX rendered on the site with either basic
+elements like button, link, image, table, etc, and custom react component, you would need `@next/mdx` and [some setup steps](https://nextjs.org/docs/app/guides/mdx).
+I did not go through the MDX setup in Next.js - thanks to Nextra, I can skip those time consuming tasks and dive right into structuring and styling my blog.
+
+## The styling
+
+I use TailwindCSS for this site as all of my components are using it.
