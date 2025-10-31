@@ -5,12 +5,7 @@ export default {
     index: 'Home',
     posts: {
         type: 'page',
-        // display: 'hidden',
-        items: {
-            // draft: {
-            //     display: 'hidden'
-            // }
-        }
+        display: 'hidden',
     },
     connect: "Connect",
     stats: "Stats",
