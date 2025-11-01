@@ -28,6 +28,7 @@ export function LinkBlock({
     }
 
     const shouldShowThumbnail = showThumbnail || thumbnail;
+    const isGif = thumbnail ? new URL(thumbnail).pathname.toLowerCase().endsWith('.gif') : false;
 
     return (
         <LinkBlockHover>
@@ -46,6 +47,7 @@ export function LinkBlock({
                                 width={800}
                                 height={400}
                                 className="w-full h-auto object-cover transition-transform group-hover:scale-105"
+                                unoptimized={isGif}
                             />
                         ) : (
                             <div className="w-full aspect-[2/1] bg-muted flex items-center justify-center">
