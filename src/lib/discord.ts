@@ -143,9 +143,14 @@ export async function getDiscordBookmarks(): Promise<Bookmark[]> {
                         .filter((name): name is string => name !== undefined);
 
                     // Get thumbnail from embeds
-                    const thumbnail = firstMessage.embeds?.[0]?.thumbnail?.url ||
+                    let thumbnail = firstMessage.embeds?.[0]?.thumbnail?.url ||
                         firstMessage.embeds?.[0]?.image?.url ||
                         null;
+
+                    // get thumbnail from attachment
+                    if (!thumbnail && firstMessage.attachments.length > 0) {
+                        thumbnail = firstMessage.attachments[0].url;
+                    }
 
                     allBookmarks.push({
                         id: thread.id,
