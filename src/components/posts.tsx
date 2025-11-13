@@ -26,19 +26,21 @@ export async function Posts({posts, tags, excludeByTitle, first, showViewAllButt
                                     {post.title}
                                 </Link>
                             </div>
-                            <div className="flex gap-1 text-sm">
-                                <IconTags className="w-4 min-w-4 -translate-y-0.5 text-muted-foreground"/>
-                                <div className="flex flex-wrap gap-x-1">
-                                    {post.frontMatter.tags.map((tagName, index: number) => {
-                                        return (
-                                            <Link key={tagName} href={`/tags/${tagName}`}
-                                                  className="text-sm text-muted-foreground hover:underline">
-                                                <span>{tagName}{index < post.frontMatter.tags.length - 1 && ", "}</span>
-                                            </Link>
-                                        )
-                                    })}
+                            {post.frontMatter.tags &&
+                                <div className="flex gap-1 text-sm">
+                                    <IconTags className="w-4 min-w-4 -translate-y-0.5 text-muted-foreground"/>
+                                    <div className="flex flex-wrap gap-x-1">
+                                        {post.frontMatter.tags?.map((tagName, index: number) => {
+                                            return (
+                                                <Link key={tagName} href={`/tags/${tagName}`}
+                                                      className="text-sm text-muted-foreground hover:underline">
+                                                    <span>{tagName}{index < post.frontMatter.tags.length - 1 && ", "}</span>
+                                                </Link>
+                                            )
+                                        })}
+                                    </div>
                                 </div>
-                            </div>
+                            }
                         </div>
 
                         <div className="w-[100px] text-right">
