@@ -13,24 +13,27 @@ type Props = {
 };
 
 export function PostDetail({metadata, children}: Props) {
-    const tag = metadata.tags[0];
+    const tag = metadata.tags ? metadata.tags[0] : '';
     return (
         <>
             <div className="mb-20">
                 <h1 className="mb-4">{metadata.title as string}</h1>
                 <p className="text-lg my-0">{metadata.description}</p>
 
-                <div className="text-sm italic pt-4">
-                    {/*<Link href="/posts" className="hover:underline no-underline flex items-center gap-1">*/}
-                    {/*    <IconArrowBack className="w-4"/>*/}
-                    {/*    Back to Posts*/}
-                    {/*</Link>*/}
-                    {/*<IconPoint className="w-3"/>*/}
+                {
+                    tag &&
+                    <div className="text-sm italic pt-4">
+                        {/*<Link href="/posts" className="hover:underline no-underline flex items-center gap-1">*/}
+                        {/*    <IconArrowBack className="w-4"/>*/}
+                        {/*    Back to Posts*/}
+                        {/*</Link>*/}
+                        {/*<IconPoint className="w-3"/>*/}
 
-                    Posted to <Link href={getTagUrl(tag)}
-                                    className="not-italic no-underline hover:underline">{tag}</Link> on <span
-                    className="not-italic">{formatDate(metadata.date)}</span>
-                </div>
+                        Posted to <Link href={getTagUrl(tag)}
+                                        className="not-italic no-underline hover:underline">{tag}</Link> on <span
+                        className="not-italic">{formatDate(metadata.date)}</span>
+                    </div>
+                }
 
             </div>
 
