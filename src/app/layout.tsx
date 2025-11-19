@@ -4,20 +4,30 @@ import '@/styles/globals.css'
 import CustomFooter from "@/components/custom-footer";
 import CustomHeader from "@/components/custom-header";
 import {Layout} from "nextra-theme-blog";
-import {Inter} from 'next/font/google';
 import {GoogleAnalytics} from '@next/third-parties/google'
 import {_metadata} from "@/lib/seo";
 import {generatePageMetadata} from "@phucbm/next-og-image";
+import localFont from 'next/font/local'
 
 export const generateMetadata = generatePageMetadata({
     ..._metadata,
     canonicalPath: "/"
 });
 
-const bodyFont = Inter({
-    subsets: ['latin', 'vietnamese'],
-    variable: '--font-inter'
-})
+// const bodyFont = Inter({
+//     subsets: ['latin', 'vietnamese'],
+//     variable: '--font-inter'
+// })
+const bodyFont = localFont({
+    src: [
+        {
+            path: '../../public/fonts/JetBrainsMono[wght].ttf',
+            // style: "normal",
+            // weight: "100 900",
+        },
+    ],
+    variable: "--font-jetbrains-mono",
+});
 
 export default async function RootLayout({children}) {
     return (

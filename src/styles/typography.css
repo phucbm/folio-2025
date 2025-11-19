@@ -15,4 +15,8 @@
     .heading-4 {
         @apply text-[1em] font-normal;
     }
+
+    .decor-marks {
+        @apply text-muted-foreground opacity-30 pointer-events-none select-none;
+    }
 }
