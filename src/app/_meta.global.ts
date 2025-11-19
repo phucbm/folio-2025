@@ -7,6 +7,10 @@ export default {
         type: 'page',
         display: 'hidden',
     },
+    components: {
+        title: "Components",
+        href: "https://ui.phucbm.com/"
+    },
     connect: "Connect",
     stats: "Stats",
     uses: "Uses",
