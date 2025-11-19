@@ -4,6 +4,8 @@ import type {Metadata} from 'next'
 import React from "react";
 import {PostDetail} from "@/components/post-detail";
 import {FrontMatter} from "@/lib/get-posts";
+import {_metadata} from "@/lib/seo";
+import {generatePageMetadata} from "@phucbm/next-og-image";
 
 // Define types for params and metadata
 type PageParams = {
@@ -16,11 +18,45 @@ type PageProps = {
 
 export const generateStaticParams = generateStaticParamsFor('mdxPath')
 
-export async function generateMetadata(props: PageProps): Promise<Metadata> {
-    const params = await props.params
+// export async function generateMetadata(props: PageProps): Promise<Metadata> {
+//     const params = await props.params
+//     const {metadata} = await importPage(params.mdxPath)
+//     return metadata
+// }
+
+// @ts-ignore
+export const generateMetadata = generatePageMetadata(async (props) => {
+    const params = await props.params;
+    if (!params.mdxPath) return {..._metadata};
     const {metadata} = await importPage(params.mdxPath)
-    return metadata
-}
+
+    const canonicalPath = params.mdxPath ? `/${params.mdxPath.join('/')}` : '/';
+
+    const description = metadata.description ?? _metadata.description;
+
+    let title = `${metadata.title} - ${_metadata.siteName}`;
+    if (metadata.description) {
+        title = `${metadata.title}: ${metadata.description}`;
+    }
+
+    let socialImage = {
+        title: metadata.title,
+    };
+
+    if (canonicalPath === '/') {
+        // homepage
+        title = `${_metadata.siteName}: ${_metadata.description}`;
+        socialImage = null;
+    }
+
+    return {
+        ..._metadata,
+        title,
+        canonicalPath,
+        description,
+        socialImage,
+    };
+});
 
 const Wrapper = getMDXComponents().wrapper
 

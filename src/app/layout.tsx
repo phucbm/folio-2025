@@ -3,17 +3,16 @@ import 'nextra-theme-blog/style.css'
 import '@/styles/globals.css'
 import CustomFooter from "@/components/custom-footer";
 import CustomHeader from "@/components/custom-header";
-import {Metadata} from "next";
 import {Layout} from "nextra-theme-blog";
 import {Inter} from 'next/font/google';
 import {GoogleAnalytics} from '@next/third-parties/google'
+import {_metadata} from "@/lib/seo";
+import {generatePageMetadata} from "@phucbm/next-og-image";
 
-export const metadata: Metadata = {
-    title: {
-        absolute: '',
-        template: '%s - @phucbm'
-    }
-}
+export const generateMetadata = generatePageMetadata({
+    ..._metadata,
+    canonicalPath: "/"
+});
 
 const bodyFont = Inter({
     subsets: ['latin', 'vietnamese'],
