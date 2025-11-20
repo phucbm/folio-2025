@@ -26,6 +26,7 @@
     --radius-md:calc(var(--radius) - 2px);
     --radius-lg:var(--radius);
     --radius-xl:calc(var(--radius) + 4px);
+    --color-brand:var(--brand);
     --color-background:var(--background);
     --color-foreground:var(--foreground);
     --color-card:var(--card);
@@ -60,6 +61,8 @@
 }
 
 :root {
+    --brand:#179cf9;
+    --brand-foreground:#fff;
     --radius:0.625rem;
     --background:#fff;
     --foreground:#3c3c3c;

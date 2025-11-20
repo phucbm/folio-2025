@@ -1,5 +1,6 @@
+/*Override nextra style*/
 .article-container > article.x\:container {
-    @apply max-w-[700px] py-0;
+    @apply max-w-[768px] py-0;
 }
 
 .content-wrapper > :first-child {
@@ -7,4 +8,24 @@
 }
 .content-wrapper > :last-child {
     @apply mb-0;
+}
+
+
+/*Dev style*/
+@layer utilities {
+    .decor-marks {
+        @apply text-muted-foreground opacity-30 pointer-events-none select-none;
+    }
+    .dev-borders {
+        @apply border border-dashed border-brand/20;
+    }
+    .dev-borders-y {
+        @apply border border-dashed border-brand/20;
+        @apply border-x-0;
+    }
+    .dev-gap-bg {
+        background:url(
+        data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAARUlEQVR4AYzMQQ4AEBADQFw8wQu9ygs9wYnsQbJly/bUJpOmoFLamGpCBdhrjgwDlAuGL8iwCS1M4YmfUOMv3NgFBbvhAgAA//+tp1XBAAAABklEQVQDABNjHBU19V/QAAAAAElFTkSuQmCC
+        ) repeat;
+    }
 }

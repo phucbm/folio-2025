@@ -8,6 +8,8 @@ import {GoogleAnalytics} from '@next/third-parties/google'
 import {_metadata} from "@/lib/seo";
 import {generatePageMetadata} from "@phucbm/next-og-image";
 import localFont from 'next/font/local'
+import {Gap} from "@/components/gap";
+import React from "react";
 
 export const generateMetadata = generatePageMetadata({
     ..._metadata,
@@ -48,14 +50,16 @@ export default async function RootLayout({children}) {
         <body className="min-h-screen">
         <div className="article-container">
             <Layout>
-                <div className="min-h-screen flex flex-col justify-between">
-                    <div>
-                        <CustomHeader/>
-
+                <div className="flex flex-col justify-between dev-borders">
+                    <Gap height={4} className="!border-t-0"/>
+                    <CustomHeader/>
+                    <Gap height={14}/>
+                    <div className="py-2 px-1">
                         {children}
                     </div>
-
+                    <Gap height={14}/>
                     <CustomFooter/>
+                    <Gap height={4} className="!border-b-0"/>
                 </div>
             </Layout>
         </div>
