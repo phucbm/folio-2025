@@ -5,26 +5,32 @@ import {useFSRoute} from 'nextra/hooks'
 import * as React from 'react';
 
 type Props = {
-    href: string;
+    href?: string;
     target?: string;
     children: React.ReactNode;
 };
 
 export function MenuBarLink(props: Props) {
     const pathname = useFSRoute();
-    const {href, target = ""} = props;
+    const {href, target = ''} = props;
     return (
-        <Link
-            href={href}
-            className="no-underline hover:bg-gray-50
+        <>
+            {href ?
+                <Link
+                    href={href}
+                    className='no-underline hover:bg-gray-50
             text-muted-foreground aria-[current]:text-primary
-            py-0.5
-            "
-            aria-current={href === pathname || undefined}
-            target={target}
-            {...props}
-        >
-            {props.children}
-        </Link>
+            py-0.5`
+            '
+                    aria-current={href === pathname || undefined}
+                    target={target}
+                    {...props}
+                >
+                    {props.children}
+                </Link>
+                :
+                <>{props.children}</>
+            }
+        </>
     )
 }

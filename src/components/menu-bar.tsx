@@ -1,12 +1,14 @@
-import type {MenuItem, PageMapItem} from 'nextra'
-import {normalizePages, PageItem} from 'nextra/normalize-pages'
+import type {MenuItem} from 'nextra'
+import {PageItem} from 'nextra/normalize-pages'
 import type {FC, ReactNode} from 'react'
 import {cn} from "@/lib/utils";
 import {MenuBarLink} from "@/components/menu-bar-link";
+import {NextraSearchDialog} from "@/components/nextra-search-dialog";
+import {getPagesFromPageMap} from "@/lib/getPagesFromPageMap";
+import {getPageMap} from "nextra/page-map";
 
 type NavbarProps = {
     children?: ReactNode;
-    pageMap: PageMapItem[];
     className?: string;
 }
 type ExtendedNavbarItem = (PageItem | MenuItem) & {
@@ -14,10 +16,22 @@ type ExtendedNavbarItem = (PageItem | MenuItem) & {
     target?: string;
 }
 
-export const MenuBar: FC<NavbarProps> = ({children, pageMap, className}) => {
-    const {topLevelNavbarItems} = normalizePages({list: pageMap, route: '/'})
+export const MenuBar: FC<NavbarProps> = async ({children, className}) => {
 
-    const items = topLevelNavbarItems.filter(item => item.display !== "hidden");
+    const items = [
+        {
+            href: '/bookmarks',
+            title: "Bookmarks"
+        },
+        {
+            href: 'https://ui.phucbm.com/',
+            title: "Components",
+            target: '_blank',
+        },
+        {
+            title: <NextraSearchDialog pages={await getPagesFromPageMap({pageMap: await getPageMap()})}/>
+        }
+    ];
 
     return (
         <div
@@ -25,18 +39,14 @@ export const MenuBar: FC<NavbarProps> = ({children, pageMap, className}) => {
             data-pagefind-ignore="all"
         >
             <span className="decor-marks">[</span>
-            {items.map((nav, index) => {
-                const extendedNav = nav as ExtendedNavbarItem;
-                const href = ('route' in extendedNav ? extendedNav.route : extendedNav.href) || '';
-
+            {items.map(({href, title, target}, index) => {
                 return (
-                    <div>
+                    <div key={href || index}>
                         <MenuBarLink
-                            key={href}
                             href={href}
-                            target={extendedNav.target}
+                            target={target}
                         >
-                            {extendedNav.title}
+                            {title}
                         </MenuBarLink>
                         {index < items.length - 1 &&
                             <span className="decor-marks">,</span>

@@ -5,7 +5,7 @@ import {getPageMap} from "nextra/page-map";
 
 const CustomHeader = async () => {
     return (
-        <div className="custom-header flex items-center justify-between py-3 mb-24">
+        <div className="custom-header flex items-center justify-between py-3 px-1">
             <Logo/>
 
             <MenuBar pageMap={await getPageMap()}/>

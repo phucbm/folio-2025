@@ -16,19 +16,19 @@ export default {
     },
     connect: {
         type: 'page',
-        display: 'hidden',
+        // display: 'hidden',
     },
     stats: {
         type: 'page',
-        display: 'hidden',
+        // display: 'hidden',
     },
     uses: {
         type: 'page',
-        display: 'hidden',
+        // display: 'hidden',
     },
     now: {
         type: 'page',
-        display: 'hidden',
+        // display: 'hidden',
     },
     bookmarks: "Bookmarks",
     goodreads: {

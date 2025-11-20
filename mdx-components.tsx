@@ -11,6 +11,7 @@ import JsDelivrPackages from "@/components/jsdelivr";
 import Bookmarks from "@/components/bookmarks";
 import BooksPage from "@/components/goodreads/page";
 import {Callout} from 'nextra/components'
+import {Gap} from "@/components/gap";
 
 const blogComponents = getBlogMDXComponents({
     h1: ({children}) => (
@@ -64,5 +65,6 @@ export function useMDXComponents() {
         Connect: Connect,
         Bookmarks: Bookmarks,
         BooksPage: BooksPage,
+        Gap: Gap,
     }
 }
