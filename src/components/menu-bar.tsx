@@ -6,6 +6,7 @@ import {MenuBarLink} from "@/components/menu-bar-link";
 import {NextraSearchDialog} from "@/components/nextra-search-dialog";
 import {getPagesFromPageMap} from "@/lib/getPagesFromPageMap";
 import {getPageMap} from "nextra/page-map";
+import {ThemeSwitch} from "nextra-theme-blog";
 
 type NavbarProps = {
     children?: ReactNode;
@@ -30,6 +31,9 @@ export const MenuBar: FC<NavbarProps> = async ({children, className}) => {
         },
         {
             title: <NextraSearchDialog placeholder="Search" pages={await getPagesFromPageMap({pageMap: await getPageMap()})}/>
+        },
+        {
+            title: <ThemeSwitch/>
         }
     ];
 

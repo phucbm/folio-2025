@@ -18,9 +18,9 @@ export function MenuBarLink(props: Props) {
             {href ?
                 <Link
                     href={href}
-                    className='no-underline hover:bg-gray-50
+                    className='no-underline hover:bg-muted
             text-muted-foreground aria-[current]:text-primary
-            py-0.5`
+            py-1 px-0.5 inline-block`
             '
                     aria-current={href === pathname || undefined}
                     target={target}

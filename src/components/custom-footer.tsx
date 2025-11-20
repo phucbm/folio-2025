@@ -24,7 +24,6 @@ const CustomFooter = async () => {
                     <div>
                         © {new Date().getFullYear()} Felix
                     </div>
-                    <ThemeSwitch/>
                 </div>
 
             </div>
