@@ -29,7 +29,7 @@ export const MenuBar: FC<NavbarProps> = async ({children, className}) => {
             target: '_blank',
         },
         {
-            title: <NextraSearchDialog pages={await getPagesFromPageMap({pageMap: await getPageMap()})}/>
+            title: <NextraSearchDialog placeholder="Search" pages={await getPagesFromPageMap({pageMap: await getPageMap()})}/>
         }
     ];
 

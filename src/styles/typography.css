@@ -15,4 +15,14 @@
     .heading-4 {
         @apply text-[1em] font-normal;
     }
+
+    .p-button {
+        box-shadow:0 8px 12px #0000000f, 0 4px 8px #00000014, 0 1px 2px #0000001f, inset 0 1.5px 1px #ffffff47;
+        @apply border border-brand-accent;
+        @apply text-xs transition-none cursor-pointer;
+        @apply bg-brand text-brand-foreground rounded-md px-2 py-1;
+        @apply inline-flex items-center justify-center text-center gap-2;
+
+        @apply hover:bg-brand-accent;
+    }
 }
