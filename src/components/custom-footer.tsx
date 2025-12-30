@@ -22,7 +22,7 @@ const CustomFooter = async () => {
                 {/*row*/}
                 <div className="flex gap-2 items-center">
                     <div>
-                        © {new Date().getFullYear()} Felix
+                        © {new Date().getFullYear()} Phuc Bui
                     </div>
                 </div>
 
