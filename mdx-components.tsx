@@ -10,8 +10,14 @@ import NpmPackages from "@/components/npm-packages";
 import JsDelivrPackages from "@/components/jsdelivr";
 import Bookmarks from "@/components/bookmarks";
 import BooksPage from "@/components/goodreads/page";
-import {Callout} from 'nextra/components'
 import {Gap} from "@/components/gap";
+import {RegistryInstall} from "@/components/registry-install";
+import {RegistryDemo} from "@/components/registry-demo"
+import {RegistryPropsTable} from "@/components/registry-props-table";
+import {RegistryExample} from "@/components/registry-example";
+import {OpenInV0Button} from "@/components/OpenInV0Button";
+import {Callout} from "nextra/components";
+import {Components} from "@/components/components";
 
 const blogComponents = getBlogMDXComponents({
     h1: ({children}) => (
@@ -66,5 +72,11 @@ export function useMDXComponents() {
         Bookmarks: Bookmarks,
         BooksPage: BooksPage,
         Gap: Gap,
+        RegistryInstall: RegistryInstall,
+        RegistryDemo: RegistryDemo,
+        RegistryPropsTable: RegistryPropsTable,
+        RegistryExample: RegistryExample,
+        OpenInV0Button: OpenInV0Button,
+        Components: Components,
     }
 }

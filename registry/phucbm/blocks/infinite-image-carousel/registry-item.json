@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "infinite-image-carousel",
+  "type": "registry:component",
+  "title": "Image Carousel",
+  "description": "A GSAP-powered infinite image carousel with draggable interaction and hover slowdown effects.",
+  "dependencies": [
+    "react",
+    "gsap",
+    "@gsap/react",
+    "responsive-gsap",
+    "tailwind-merge",
+    "clsx"
+  ],
+  "files": [
+    {
+      "path": "registry/phucbm/blocks/infinite-image-carousel/infinite-image-carousel.tsx",
+      "type": "registry:component",
+      "target": "components/phucbm/infinite-image-carousel.tsx"
+    },
+    {
+      "path": "registry/phucbm/lib/utils.ts",
+      "type": "registry:lib",
+      "target": "lib/utils.ts"
+    }
+  ]
+}
