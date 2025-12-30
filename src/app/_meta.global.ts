@@ -1,8 +1,11 @@
 export default {
     '*': {
-        type: 'page'
+        type: 'page',
     },
-    index: 'Home',
+    index: {
+        type: 'page',
+        display: 'hidden',
+    },
     posts: {
         type: 'page',
         display: 'hidden',
@@ -11,12 +14,27 @@ export default {
         title: "Components",
         href: "https://ui.phucbm.com/"
     },
-    connect: "Connect",
-    stats: "Stats",
-    uses: "Uses",
-    now: "Now",
+    connect: {
+        type: 'page',
+        // display: 'hidden',
+    },
+    stats: {
+        type: 'page',
+        // display: 'hidden',
+    },
+    uses: {
+        type: 'page',
+        // display: 'hidden',
+    },
+    now: {
+        type: 'page',
+        // display: 'hidden',
+    },
     bookmarks: "Bookmarks",
-    goodreads: "Goodreads",
+    goodreads: {
+        type: 'page',
+        display: 'hidden',
+    },
     colophon: "Colophon",
     // rss: {
     //     href: "/rss.xml",

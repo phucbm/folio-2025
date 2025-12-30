@@ -26,6 +26,9 @@
     --radius-md:calc(var(--radius) - 2px);
     --radius-lg:var(--radius);
     --radius-xl:calc(var(--radius) + 4px);
+    --color-brand:var(--brand);
+    --color-brand-accent:var(--brand-accent);
+    --color-brand-foreground:var(--brand-foreground);
     --color-background:var(--background);
     --color-foreground:var(--foreground);
     --color-card:var(--card);
@@ -60,6 +63,9 @@
 }
 
 :root {
+    --brand:#179cf9;
+    --brand-accent:#2aa0dd;
+    --brand-foreground:#fff;
     --radius:0.625rem;
     --background:#fff;
     --foreground:#3c3c3c;
@@ -95,6 +101,7 @@
 }
 
 .dark {
+    --brand-accent:#016ca2;
     --background:#1a1a1a;
     --foreground:#fafafa;
     --card:#262626;
@@ -134,6 +141,11 @@
     }
     body {
         @apply bg-background text-foreground;
+    }
+
+    html {
+        font-size:14px;
+        line-height:1.2;
     }
 
     /* Disables pull-to-refresh and overscroll glow effect. Still keeps swipe navigations. */

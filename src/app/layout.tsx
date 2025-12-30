@@ -3,22 +3,33 @@ import 'nextra-theme-blog/style.css'
 import '@/styles/globals.css'
 import CustomFooter from "@/components/custom-footer";
 import CustomHeader from "@/components/custom-header";
-import {Metadata} from "next";
 import {Layout} from "nextra-theme-blog";
-import {Inter} from 'next/font/google';
 import {GoogleAnalytics} from '@next/third-parties/google'
+import {_metadata} from "@/lib/seo";
+import {generatePageMetadata} from "@phucbm/next-og-image";
+import localFont from 'next/font/local'
+import {Gap} from "@/components/gap";
+import React from "react";
 
-export const metadata: Metadata = {
-    title: {
-        absolute: '',
-        template: '%s - @phucbm'
-    }
-}
+export const generateMetadata = generatePageMetadata({
+    ..._metadata,
+    canonicalPath: "/"
+});
 
-const bodyFont = Inter({
-    subsets: ['latin', 'vietnamese'],
-    variable: '--font-inter'
-})
+// const bodyFont = Inter({
+//     subsets: ['latin', 'vietnamese'],
+//     variable: '--font-inter'
+// })
+const bodyFont = localFont({
+    src: [
+        {
+            path: '../../public/fonts/JetBrainsMono[wght].ttf',
+            // style: "normal",
+            // weight: "100 900",
+        },
+    ],
+    variable: "--font-jetbrains-mono",
+});
 
 export default async function RootLayout({children}) {
     return (
@@ -39,14 +50,16 @@ export default async function RootLayout({children}) {
         <body className="min-h-screen">
         <div className="article-container">
             <Layout>
-                <div className="min-h-screen flex flex-col justify-between">
-                    <div>
-                        <CustomHeader/>
-
+                <div className="flex flex-col justify-between dev-borders">
+                    <Gap height={4} className="!border-t-0"/>
+                    <CustomHeader/>
+                    <Gap height={14}/>
+                    <div className="py-2 px-1">
                         {children}
                     </div>
-
+                    <Gap height={14}/>
                     <CustomFooter/>
+                    <Gap height={4} className="!border-b-0"/>
                 </div>
             </Layout>
         </div>
