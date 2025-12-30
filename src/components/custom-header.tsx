@@ -8,7 +8,7 @@ const CustomHeader = async () => {
         <div className="custom-header flex items-center justify-between py-3 px-1">
             <Logo/>
 
-            <MenuBar pageMap={await getPageMap()}/>
+            <MenuBar/>
         </div>
     );
 };
