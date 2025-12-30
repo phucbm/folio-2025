@@ -1,7 +1,11 @@
 import fs from "fs";
 import path from "path";
-import {CodeItem} from "@/components/code-block-view";
 
+type CodeItem = {
+    language: string;
+    filename: string;
+    code: string;
+};
 /**
  * Reads a file from a given path and returns a CodeItem.
  */

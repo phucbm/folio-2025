@@ -37,6 +37,7 @@ export async function getRegistryItem(
 
         // Merge: base item with example overrides
         // Files array is merged, other fields are overridden
+        // @ts-ignore
         const merged: RegistryItem = {
             ...baseItem,
             ...exampleOverrides,

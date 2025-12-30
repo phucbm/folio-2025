@@ -16,7 +16,7 @@ import {RegistryDemo} from "@/components/registry-demo"
 import {RegistryPropsTable} from "@/components/registry-props-table";
 import {RegistryExample} from "@/components/registry-example";
 import {OpenInV0Button} from "@/components/OpenInV0Button";
-import {Callout} from "nextra/components";
+import {Callout, Steps} from "nextra/components";
 import {Components} from "@/components/components";
 
 const blogComponents = getBlogMDXComponents({
@@ -78,5 +78,6 @@ export function useMDXComponents() {
         RegistryExample: RegistryExample,
         OpenInV0Button: OpenInV0Button,
         Components: Components,
+        Steps: Steps,
     }
 }
