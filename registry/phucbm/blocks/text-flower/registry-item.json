@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "text-flower",
+  "type": "registry:component",
+  "title": "Text Flower",
+  "description": "Animated wheel of text lines that orbit around a central anchor.",
+  "dependencies": [
+    "gsap",
+    "react",
+    "@gsap/react",
+    "tailwind-merge",
+    "clsx"
+  ],
+  "files": [
+    {
+      "path": "registry/phucbm/blocks/text-flower/text-flower.tsx",
+      "type": "registry:component",
+      "target": "components/phucbm/text-flower.tsx"
+    },
+    {
+      "path": "registry/phucbm/lib/calculatePointsOnCircle.ts",
+      "type": "registry:lib",
+      "target": "lib/calculatePointsOnCircle.ts"
+    },
+    {
+      "path": "registry/phucbm/lib/utils.ts",
+      "type": "registry:lib",
+      "target": "lib/utils.ts"
+    }
+  ]
+}

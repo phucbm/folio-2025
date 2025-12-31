@@ -25,9 +25,8 @@ export const MenuBar: FC<NavbarProps> = async ({children, className}) => {
             title: "Bookmarks"
         },
         {
-            href: 'https://ui.phucbm.com/',
-            title: "Components",
-            target: '_blank',
+            href: '/components',
+            title: "Components"
         },
         {
             title: <NextraSearchDialog placeholder="Search" pages={await getPagesFromPageMap({pageMap: await getPageMap()})}/>
@@ -43,13 +42,10 @@ export const MenuBar: FC<NavbarProps> = async ({children, className}) => {
             data-pagefind-ignore="all"
         >
             <span className="decor-marks">[</span>
-            {items.map(({href, title, target}, index) => {
+            {items.map(({href, title}, index) => {
                 return (
                     <div key={href || index}>
-                        <MenuBarLink
-                            href={href}
-                            target={target}
-                        >
+                        <MenuBarLink href={href}>
                             {title}
                         </MenuBarLink>
                         {index < items.length - 1 &&
