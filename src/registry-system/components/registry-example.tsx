@@ -1,6 +1,6 @@
 import * as React from "react";
-import {getRegistryItem} from "@/lib/getRegistryItem";
-import {SandpackExampleCode} from "@/components/sandpack-example-code";
+import {getRegistryItem} from "@/registry-system/lib/getRegistryItem";
+import {SandpackExampleCode} from "@/registry-system/components/sandpack-example-code";
 
 type Props = { name: string };
 

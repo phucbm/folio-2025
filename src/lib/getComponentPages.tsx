@@ -1,5 +1,5 @@
 import {MetaRecord} from "nextra";
-import {getComponents} from "@/lib/getComponents";
+import {getComponents} from "@/registry-system/lib/getComponents";
 import {PageFrontMatter} from "@/lib/mdx";
 import {SidebarCustomItem} from "@/components/sidebar-custom-item";
 

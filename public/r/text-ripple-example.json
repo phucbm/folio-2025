@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "text-ripple-example",
+  "title": "Text Ripple Example",
+  "description": "Mouse-tracked ripple effect applied to headline text.",
+  "dependencies": [
+    "gsap",
+    "react",
+    "@gsap/react",
+    "normalized-mouse-position",
+    "@phucbm/ripple-effect"
+  ],
+  "registryDependencies": [
+    "https://phucbm.com/r/text-ripple.json"
+  ],
+  "files": [
+    {
+      "path": "registry/phucbm/blocks/text-ripple/example.transformed.tsx",
+      "content": "import {TextRipple} from \"@/components/phucbm/text-ripple\";\n\nexport default function Example() {\n    return (\n        <TextRipple className=\"h-screen\"/>\n    );\n}",
+      "type": "registry:component",
+      "target": "index.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

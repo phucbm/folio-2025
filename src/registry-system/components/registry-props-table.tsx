@@ -1,5 +1,5 @@
 import {generateDefinition, TSDoc} from "nextra/tsdoc";
-import {getRegistryItem} from "@/lib/getRegistryItem";
+import {getRegistryItem} from "@/registry-system/lib/getRegistryItem";
 
 export async function RegistryPropsTable({type, name}: { type?: string, name: string }) {
     const registryItem = await getRegistryItem(name);

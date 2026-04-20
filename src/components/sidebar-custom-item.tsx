@@ -1,4 +1,4 @@
-import {Component} from "@/lib/getComponents";
+import {Component} from "@/registry-system/lib/getComponents";
 import * as React from "react";
 import {IconDeviceGamepad} from "@tabler/icons-react";
 import {Tooltip} from "@/components/tooltip";

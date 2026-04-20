@@ -7,12 +7,12 @@ import {
     SandpackProvider,
     SandpackProviderProps
 } from "@codesandbox/sandpack-react";
-import {RegistryPreview} from "@/components/registry-preview";
-import {getSandpackFiles} from "@/lib/getSandpackFiles";
+import {RegistryPreview} from "@/registry-system/components/registry-preview";
+import {getSandpackFiles} from "@/registry-system/lib/getSandpackFiles";
 import {aquaBlue} from "@codesandbox/sandpack-themes";
 import {IconCode, IconDeviceGamepad} from "@tabler/icons-react";
-import {OpenInV0Button} from "@/components/OpenInV0Button";
-import {getRegistryUrl} from "@/lib/getRegistryUrl";
+import {OpenInV0Button} from "@/registry-system/components/OpenInV0Button";
+import {getRegistryUrl} from "@/registry-system/lib/getRegistryUrl";
 
 type Props = {
     registryItem: RegistryItem;

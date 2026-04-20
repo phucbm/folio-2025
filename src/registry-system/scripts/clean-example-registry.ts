@@ -12,7 +12,7 @@ import path from "path";
 import url from "url";
 
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
-const ROOT = path.resolve(__dirname, "..");
+const ROOT = path.resolve(__dirname, "../../..");
 const REGISTRY_DIR = path.join(ROOT, "registry");
 const REGISTRY_OUTPUT_DIR = path.join(ROOT, "public/r");
 

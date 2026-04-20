@@ -1,7 +1,7 @@
 // RegistryDemo.tsx (Server Component)
-import {getRegistryItem} from "@/lib/getRegistryItem";
+import {getRegistryItem} from "@/registry-system/lib/getRegistryItem";
 import React from "react";
-import SandpackDemo from "@/components/sandpack-demo";
+import SandpackDemo from "@/registry-system/components/sandpack-demo";
 
 type Props = {
     name?: string;
