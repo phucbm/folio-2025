@@ -51,7 +51,7 @@ interface RegistryRoot {
 }
 
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
-const ROOT = path.resolve(__dirname, "..");
+const ROOT = path.resolve(__dirname, "../../..");
 const REGISTRY_DIR = path.join(ROOT, "registry");
 const REGISTRY_JSON = path.join(ROOT, "registry.json");
 
@@ -310,8 +310,8 @@ async function main() {
     const base: RegistryRoot = {
         $schema:
             existing.$schema ?? "https://ui.shadcn.com/schema/registry.json",
-        name: existing.name ?? "phucbm",
-        homepage: existing.homepage ?? "https://ui.phucbm.com",
+        name: existing.name ?? process.env.NEXT_PUBLIC_REGISTRY_NAMESPACE ?? "phucbm",
+        homepage: existing.homepage ?? process.env.NEXT_PUBLIC_REGISTRY_HOMEPAGE ?? process.env.NEXT_PUBLIC_SITE_URL ?? "",
         items: [],
     };
 

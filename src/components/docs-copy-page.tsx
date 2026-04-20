@@ -5,7 +5,7 @@ import {Button} from "@/components/ui/button"
 import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger,} from "@/components/ui/dropdown-menu"
 import {Popover, PopoverAnchor, PopoverContent, PopoverTrigger,} from "@/components/ui/popover"
 import {Separator} from "@/components/ui/separator"
-import {getRegistryUrl} from "@/lib/getRegistryUrl";
+import {getRegistryUrl} from "@/registry-system/lib/getRegistryUrl";
 
 function getPromptUrl(baseURL: string, url: string) {
   return `${baseURL}?q=${encodeURIComponent(

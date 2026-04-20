@@ -11,13 +11,13 @@ import JsDelivrPackages from "@/components/jsdelivr";
 import Bookmarks from "@/components/bookmarks";
 import BooksPage from "@/components/goodreads/page";
 import {Gap} from "@/components/gap";
-import {RegistryInstall} from "@/components/registry-install";
-import {RegistryDemo} from "@/components/registry-demo"
-import {RegistryPropsTable} from "@/components/registry-props-table";
-import {RegistryExample} from "@/components/registry-example";
-import {OpenInV0Button} from "@/components/OpenInV0Button";
+import {RegistryInstall} from "@/registry-system/components/registry-install";
+import {RegistryDemo} from "@/registry-system/components/registry-demo"
+import {RegistryPropsTable} from "@/registry-system/components/registry-props-table";
+import {RegistryExample} from "@/registry-system/components/registry-example";
+import {OpenInV0Button} from "@/registry-system/components/OpenInV0Button";
 import {Callout, Steps} from "nextra/components";
-import {Components} from "@/components/components";
+import {Components} from "@/registry-system/components/components";
 
 const blogComponents = getBlogMDXComponents({
     h1: ({children}) => (

@@ -1,0 +1,4 @@
+export const REGISTRY_NAMESPACE = process.env.NEXT_PUBLIC_REGISTRY_NAMESPACE ?? "phucbm";
+export const REGISTRY_FOLDER = process.env.NEXT_PUBLIC_REGISTRY_FOLDER ?? "r";
+export const REGISTRY_SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "";
+export const REGISTRY_HOMEPAGE = process.env.NEXT_PUBLIC_REGISTRY_HOMEPAGE ?? REGISTRY_SITE_URL;

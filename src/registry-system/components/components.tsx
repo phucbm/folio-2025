@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {getComponents} from "@/lib/getComponents";
-import {ComponentsClient} from "@/components/componentsClient";
+import {getComponents} from "@/registry-system/lib/getComponents";
+import {ComponentsClient} from "@/registry-system/components/componentsClient";
 
 type Props = {
     sortByCreatedTime?: 'asc' | 'desc';

@@ -1,5 +1,5 @@
-import {CodeBlockCommand} from "@/components/code-block-command";
-import {getRegistryUrl} from "@/lib/getRegistryUrl";
+import {CodeBlockCommand} from "@/registry-system/components/code-block-command";
+import {getRegistryUrl} from "@/registry-system/lib/getRegistryUrl";
 
 type Props = {
     name: string;

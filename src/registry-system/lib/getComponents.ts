@@ -1,5 +1,5 @@
 import {getMdxData, getMdxFiles, MdxData} from "@/lib/mdx";
-import {getRegistryItem} from "@/lib/getRegistryItem";
+import {getRegistryItem} from "@/registry-system/lib/getRegistryItem";
 import {RegistryItem} from "shadcn/schema";
 
 export interface Component {

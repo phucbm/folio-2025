@@ -4,7 +4,7 @@ import * as React from 'react';
 import {useEffect, useMemo, useState} from 'react';
 import Link from 'next/link';
 import {Badge} from '@/components/ui/badge';
-import {Component} from '@/lib/getComponents';
+import {Component} from '@/registry-system/lib/getComponents';
 import {cn} from "@/lib/utils";
 
 type Props = {
