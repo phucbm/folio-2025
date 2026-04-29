@@ -1,6 +1,5 @@
 import {RegistryItem} from "shadcn/schema";
 import {getCodeItemFromPath} from "@/registry-system/lib/getCodeItemFromPath";
-import path from "path";
 import {SandpackFiles} from "@codesandbox/sandpack-react";
 
 type Props = {
@@ -28,7 +27,7 @@ export async function getSandpackFiles({
     }
 
     // Get the directory of the main file
-    const mainFileDir = path.dirname(mainFile.path);
+    const mainFileDir = mainFile.path.split('/').slice(0, -1).join('/');
 
     // Step 2: Read all registry files
     const registryCodeItems = await Promise.all(
@@ -44,11 +43,13 @@ export async function getSandpackFiles({
 
     registryItem.files.forEach((file) => {
         // Remove file extension from target
-        const ext = path.extname(file.target);
+        const extMatch = file.target.match(/\.[^/.]+$/);
+        const ext = extMatch ? extMatch[0] : '';
         const targetWithoutExt = ext ? file.target.slice(0, -ext.length) : file.target;
 
         // Remove file extension from file.path for the registry import
-        const fileExt = path.extname(file.path);
+        const fileExtMatch = file.path.match(/\.[^/.]+$/);
+        const fileExt = fileExtMatch ? fileExtMatch[0] : '';
         const filePathWithoutExt = fileExt ? file.path.slice(0, -fileExt.length) : file.path;
 
         // Create the registry import path (with @ alias)
