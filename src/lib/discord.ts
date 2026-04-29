@@ -41,7 +41,8 @@ export async function getDiscordBookmarks(): Promise<Bookmark[]> {
     const DISCORD_CHANNEL_ID = process.env.DISCORD_CHANNEL_ID;
 
     if (!DISCORD_BOT_TOKEN || !DISCORD_CHANNEL_ID) {
-        throw new Error('Missing Discord credentials');
+        console.warn('Missing Discord credentials — skipping bookmark fetch');
+        return [];
     }
 
     try {
