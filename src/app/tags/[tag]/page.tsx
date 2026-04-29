@@ -18,6 +18,8 @@ export async function generateMetadata(props: TagPageProps): Promise<Metadata> {
     }
 }
 
+export const dynamicParams = false
+
 export async function generateStaticParams(): Promise<TagPageParams[]> {
     const allTags = await getTags()
     return [...new Set(allTags)].map(item => ({tag: item.name}))
