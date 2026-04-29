@@ -1,5 +1,7 @@
 import {getPosts} from "@/lib/get-posts";
 
+export const runtime = 'edge';
+
 const CONFIG = {
     title: 'My Blog',
     siteUrl: 'https://your-domain.com',
