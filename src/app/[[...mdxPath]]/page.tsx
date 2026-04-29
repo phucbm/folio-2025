@@ -1,6 +1,5 @@
 import {generateStaticParamsFor, importPage} from 'nextra/pages'
 
-export const runtime = 'edge';
 import {useMDXComponents as getMDXComponents} from '../../../mdx-components'
 import type {Metadata} from 'next'
 import React from "react";
