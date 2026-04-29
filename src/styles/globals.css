@@ -63,28 +63,28 @@
 }
 
 :root {
-    --brand:#179cf9;
-    --brand-accent:#2aa0dd;
+    --brand:#0033FF;
+    --brand-accent:#0026CC;
     --brand-foreground:#fff;
-    --radius:0.625rem;
+    --radius:0;
     --background:#fff;
-    --foreground:#3c3c3c;
+    --foreground:#111111;
     --card:#fff;
-    --card-foreground:#1a1a1a;
+    --card-foreground:#111111;
     --popover:#fff;
-    --popover-foreground:#1a1a1a;
-    --primary:#262626;
+    --popover-foreground:#111111;
+    --primary:#111111;
     --primary-foreground:#fafafa;
-    --secondary:#f7f7f7;
-    --secondary-foreground:#262626;
-    --muted:#f7f7f7;
-    --muted-foreground:#707070;
-    --accent:#f7f7f7;
-    --accent-foreground:#262626;
-    --destructive:#dc2626;
-    --border:#e5e5e5;
-    --input:#e5e5e5;
-    --ring:#a3a3a3;
+    --secondary:#f0ece3;
+    --secondary-foreground:#111111;
+    --muted:#f0ece3;
+    --muted-foreground:#555555;
+    --accent:#f0ece3;
+    --accent-foreground:#111111;
+    --destructive:#0033FF;
+    --border:#bfb9b0;
+    --input:#bfb9b0;
+    --ring:#888080;
     --chart-1:#f59e0b;
     --chart-2:#06b6d4;
     --chart-3:#3b82f6;
@@ -101,9 +101,9 @@
 }
 
 .dark {
-    --brand-accent:#016ca2;
+    --brand-accent:#0026CC;
     --background:#1a1a1a;
-    --foreground:#fafafa;
+    --foreground:#eaeaea;
     --card:#262626;
     --card-foreground:#fafafa;
     --popover:#262626;
@@ -117,8 +117,8 @@
     --accent:#333;
     --accent-foreground:#fafafa;
     --destructive:#ef4444;
-    --border:rgba(255, 255, 255, 0.1);
-    --input:rgba(255, 255, 255, 0.15);
+    --border:rgba(255, 255, 255, 0.2);
+    --input:rgba(255, 255, 255, 0.2);
     --ring:#737373;
     --chart-1:#8b5cf6;
     --chart-2:#10b981;
@@ -138,14 +138,15 @@
 @layer base {
     * {
         @apply border-border outline-ring/50;
+        border-radius: 0 !important;
     }
     body {
         @apply bg-background text-foreground;
     }
 
     html {
-        font-size:14px;
-        line-height:1.2;
+        font-size:16px;
+        line-height:1.5;
     }
 
     /* Disables pull-to-refresh and overscroll glow effect. Still keeps swipe navigations. */

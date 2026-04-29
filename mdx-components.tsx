@@ -11,6 +11,10 @@ import JsDelivrPackages from "@/components/jsdelivr";
 import Bookmarks from "@/components/bookmarks";
 import BooksPage from "@/components/goodreads/page";
 import {Gap} from "@/components/gap";
+import {Ticker} from "@/components/ticker";
+import {StatusBar} from "@/components/status-bar";
+import {HeroName} from "@/components/hero-name";
+import {ProjectsGrid} from "@/components/projects-grid";
 import {RegistryInstall} from "@/registry-system/components/registry-install";
 import {RegistryDemo} from "@/registry-system/components/registry-demo"
 import {RegistryPropsTable} from "@/registry-system/components/registry-props-table";
@@ -21,7 +25,7 @@ import {Components} from "@/registry-system/components/components";
 
 const blogComponents = getBlogMDXComponents({
     h1: ({children}) => (
-        <h1 className="heading-1">
+        <h1 className="brut-h1">
             {children}
         </h1>
     ),
@@ -31,9 +35,9 @@ const blogComponents = getBlogMDXComponents({
         </h2>
     ),
     h3: ({children}) => (
-        <h2 className="heading-3">
+        <h3 className="heading-3">
             {children}
-        </h2>
+        </h3>
     ),
     DateFormatter: ({date}) =>
         `Last updated at ${date.toLocaleDateString('en', {
@@ -72,6 +76,10 @@ export function useMDXComponents() {
         Bookmarks: Bookmarks,
         BooksPage: BooksPage,
         Gap: Gap,
+        Ticker: Ticker,
+        StatusBar: StatusBar,
+        HeroName: HeroName,
+        ProjectsGrid: ProjectsGrid,
         RegistryInstall: RegistryInstall,
         RegistryDemo: RegistryDemo,
         RegistryPropsTable: RegistryPropsTable,

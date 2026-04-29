@@ -6,7 +6,7 @@ import {Gap} from "@/components/gap";
 
 const CustomFooter = async () => {
     return (
-        <div className="custom-footer py-2 px-1">
+        <div className="custom-footer py-2 px-1 border-t-2 border-foreground">
             <div className="space-y-2">
 
                 {/*row*/}

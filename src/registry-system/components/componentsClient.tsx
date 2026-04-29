@@ -3,7 +3,6 @@
 import * as React from 'react';
 import {useEffect, useMemo, useState} from 'react';
 import Link from 'next/link';
-import {Badge} from '@/components/ui/badge';
 import {Component} from '@/registry-system/lib/getComponents';
 import {cn} from "@/lib/utils";
 
@@ -88,13 +87,10 @@ export function ComponentsClient({ components, availableTags, max = 9, totalCoun
 
             {/* Filter Section */}
             <div className="flex flex-wrap items-center gap-2">
-                {/* Always show "All" badge first */}
                 <button
-                    className={cn(`cursor-pointer transition-all duration-200
-                    px-border bg-accent px-3 py-1
-                    font-mono text-sm hover:text-brand
-                    `,
-                        selectedTags.size === 0 && '!border-brand text-brand bg-brand/10'
+                    className={cn(
+                        'cursor-pointer border border-border bg-accent px-3 py-1 font-mono text-xs uppercase tracking-widest hover:text-brand hover:border-brand transition-colors',
+                        selectedTags.size === 0 && 'border-brand text-brand bg-brand/10'
                     )}
                     onClick={() => toggleTag('All')}
                 >
@@ -109,44 +105,43 @@ export function ComponentsClient({ components, availableTags, max = 9, totalCoun
                     return (
                         <button
                             key={tag}
-                            className={cn(`cursor-pointer transition-all duration-200 px-border bg-accent px-3 py-1 capitalize
-                    font-mono text-sm hover:text-brand`,
-                                isSelected && '!border-brand text-brand bg-brand/10',
+                            className={cn(
+                                'cursor-pointer border border-border bg-accent px-3 py-1 font-mono text-xs uppercase tracking-widest capitalize hover:text-brand hover:border-brand transition-colors',
+                                isSelected && 'border-brand text-brand bg-brand/10',
                                 isDisabled && 'opacity-50 pointer-events-none'
                             )}
                             onClick={() => !isDisabled && toggleTag(tag)}
                         >
-                            {tag} <span className="inline-block min-w-[20px] text-center">({count})</span>
+                            {tag} ({count})
                         </button>
                     );
                 })}
-
             </div>
 
             {/* Components Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 border-t border-l border-border">
                 {displayedComponents.map(component => (
                     <Link
                         key={component.name}
                         href={component.url}
-                        className="px-5 py-4 !rounded-xl transition-all duration-300 px-border bg-brand/10 hover:!border-brand hover:-translate-y-[2px]
-                        flex flex-col justify-between gap-5
-                        "
+                        className="no-underline border-r border-b border-border px-4 py-4 flex flex-col justify-between gap-4 hover:bg-muted transition-colors group"
                     >
                         <div>
-                            <h3 className="text-lg font-semibold mb-2">{component.title}</h3>
-                            <div className="text-sm">{component.description}</div>
+                            <div className="flex items-start justify-between gap-2 mb-2">
+                                <h3 className="text-sm font-bold uppercase tracking-widest">{component.title}</h3>
+                                <span className="text-muted-foreground opacity-40 group-hover:opacity-100 transition-opacity text-xs shrink-0">↗</span>
+                            </div>
+                            <div className="text-sm text-muted-foreground leading-snug">{component.description}</div>
                         </div>
 
                         <div className="flex flex-wrap gap-1">
                             {component.tags?.map(tag => (
-                                <Badge
+                                <span
                                     key={tag}
-                                    variant="outline"
-                                    className="text-xs px-2 py-0.5 rounded-full bg-accent capitalize"
+                                    className="border border-border px-2 py-0.5 text-xs uppercase tracking-widest text-muted-foreground capitalize"
                                 >
                                     {tag}
-                                </Badge>
+                                </span>
                             ))}
                         </div>
                     </Link>
@@ -156,7 +151,7 @@ export function ComponentsClient({ components, availableTags, max = 9, totalCoun
             {hasMore && (
                 <Link
                     href="/components"
-                    className="px-4 py-2 text-sm font-medium rounded-md border border-border hover:border-primary hover:bg-accent transition-colors"
+                    className="no-underline inline-block border border-border px-4 py-2 text-xs uppercase tracking-widest hover:border-brand hover:text-brand transition-colors"
                 >
                     View all components
                 </Link>

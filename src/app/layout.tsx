@@ -50,7 +50,7 @@ export default async function RootLayout({children}) {
         <body className="min-h-screen">
         <div className="article-container">
             <Layout>
-                <div className="flex flex-col justify-between dev-borders">
+                <div className="flex flex-col justify-between">
                     <Gap height={4} className="!border-t-0"/>
                     <CustomHeader/>
                     <Gap height={14}/>

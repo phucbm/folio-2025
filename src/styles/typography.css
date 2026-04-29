@@ -3,17 +3,28 @@
 }
 
 @layer utilities {
-    .heading-1 {
-        @apply text-[1.6em] font-normal;
+    /* Applied explicitly to hero name/title only */
+    .brut-h1 {
+        font-size: clamp(3rem, 8vw, 6rem);
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        line-height: 0.88;
+        text-transform: uppercase;
+        margin-bottom: 0.5rem;
     }
+
     .heading-2 {
-        @apply text-[1.4em] font-normal;
+        @apply text-[1.3em] font-bold;
+        margin-top: 2rem;
+        margin-bottom: 0.5rem;
     }
     .heading-3 {
-        @apply text-[1.2em] font-normal;
+        @apply text-[1.1em] font-semibold;
+        margin-top: 1.5rem;
+        margin-bottom: 0.25rem;
     }
     .heading-4 {
-        @apply text-[1em] font-normal;
+        @apply text-[1em] font-semibold;
     }
 
     .p-button {
