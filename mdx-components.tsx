@@ -2,7 +2,8 @@ import {useMDXComponents as getBlogMDXComponents} from 'nextra-theme-blog'
 import {useMDXComponents as getNextraComponents} from 'nextra/mdx-components'
 import {Posts} from "@/components/posts";
 import {Tags} from "@/components/tags";
-import GitHubRepos from "@/components/github-repos";
+import GitHubRepos from "@/components/github-repos"
+import GitHubProjects from "@/components/github-projects/GitHubProjects";
 import {LinkBlock} from "@/components/link-block";
 import {Clients} from "@/components/clients";
 import {Connect} from "@/components/connect";
@@ -69,6 +70,7 @@ export function useMDXComponents() {
         Posts: Posts,
         Tags: Tags,
         GitHubRepos: GitHubRepos,
+        GitHubProjects: GitHubProjects,
         NpmPackages: NpmPackages,
         JsDelivrPackages: JsDelivrPackages,
         LinkBlock: LinkBlock,
