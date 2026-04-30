@@ -1,6 +1,4 @@
 import {NextResponse} from 'next/server';
-
-export const runtime = 'edge';
 import {getDiscordBookmarks} from '@/lib/discord';
 
 export async function GET() {

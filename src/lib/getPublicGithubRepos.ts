@@ -32,11 +32,11 @@ export async function getPublicGithubRepos(
         )
 
         if (!reposRes.ok) {
+            const statusText = reposRes.statusText
             const errorMsg = reposRes.status === 403
-                ? 'GitHub API rate limit exceeded. Add GITHUB_TOKEN for higher limits.'
-                : `GitHub API returned ${reposRes.status} ${reposRes.statusText}`
-            console.error('Error fetching GitHub repos:', errorMsg)
-            return []
+                ? 'GitHub API rate limit exceeded. Consider adding a GITHUB_TOKEN to .env.local for higher limits.'
+                : `GitHub API returned ${reposRes.status} ${statusText}`
+            throw new Error(errorMsg)
         }
 
         const repos = await reposRes.json()
@@ -51,7 +51,8 @@ export async function getPublicGithubRepos(
             return updatedDate >= cutoffDate
         })
     } catch (error) {
+        const errorMessage = error instanceof Error ? error.message : String(error)
         console.error('Error fetching GitHub repos:', error)
-        return []
+        throw new Error(`Failed to fetch GitHub repos: ${errorMessage}`)
     }
 }

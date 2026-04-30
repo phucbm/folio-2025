@@ -1,5 +1,4 @@
 import {generateStaticParamsFor, importPage} from 'nextra/pages'
-
 import {useMDXComponents as getMDXComponents} from '../../../mdx-components'
 import type {Metadata} from 'next'
 import React from "react";
@@ -17,7 +16,6 @@ type PageProps = {
     params: Promise<PageParams>
 }
 
-export const dynamicParams = false
 export const generateStaticParams = generateStaticParamsFor('mdxPath')
 
 // export async function generateMetadata(props: PageProps): Promise<Metadata> {
