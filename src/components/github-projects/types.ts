@@ -28,6 +28,7 @@ export interface GitHubProjectsProps {
     exclude?: string[]
     include?: string[]
     hideFilter?: boolean
+    onlyInclude?: boolean
 }
 
 export interface GitHubProjectsFilterSummary {

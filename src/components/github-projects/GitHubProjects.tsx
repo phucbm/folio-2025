@@ -44,6 +44,7 @@ export default async function GitHubProjects({
     exclude = [],
     include = [],
     hideFilter,
+    onlyInclude,
 }: GitHubProjectsProps) {
     const normalizedInclude = include.map(s => toFullSlug(s, username)).filter(Boolean)
     const normalizedExclude = exclude.map(s => toFullSlug(s, username)).filter(Boolean)
@@ -56,17 +57,30 @@ export default async function GitHubProjects({
         }),
     ])
 
-    const filtered = filterRepos(userRepos, {hasTag, starCountMin, hasWebsiteLink, hasDescription, excludeArchived, editedThisYear, exclude: normalizedExclude})
+    let merged: GitHubRepo[]
 
-    const seen = new Set(filtered.map(r => r.full_name))
-    const extras = (includedRepos.filter(Boolean) as GitHubRepo[]).filter(r => !seen.has(r.full_name))
+    if (onlyInclude) {
+        // Rebuild in include order, skipping nulls
+        const bySlug = new Map<string, GitHubRepo>()
+        userRepos.forEach(r => bySlug.set(r.full_name, r))
+        ;(includedRepos.filter(Boolean) as GitHubRepo[]).forEach(r => bySlug.set(r.full_name, r))
 
-    const sameOwnerForced = normalizedInclude
-        .filter(slug => slug.split('/')[0] === username)
-        .map(slug => userRepos.find(r => r.name === slug.split('/')[1]))
-        .filter((r): r is GitHubRepo => !!r && !seen.has(r.full_name))
+        merged = normalizedInclude
+            .map(slug => bySlug.get(slug))
+            .filter((r): r is GitHubRepo => !!r)
+    } else {
+        const filtered = filterRepos(userRepos, {hasTag, starCountMin, hasWebsiteLink, hasDescription, excludeArchived, editedThisYear, exclude: normalizedExclude})
 
-    const merged = sortRepos([...filtered, ...extras, ...sameOwnerForced], sortBy)
+        const seen = new Set(filtered.map(r => r.full_name))
+        const extras = (includedRepos.filter(Boolean) as GitHubRepo[]).filter(r => !seen.has(r.full_name))
+
+        const sameOwnerForced = normalizedInclude
+            .filter(slug => slug.split('/')[0] === username)
+            .map(slug => userRepos.find(r => r.name === slug.split('/')[1]))
+            .filter((r): r is GitHubRepo => !!r && !seen.has(r.full_name))
+
+        merged = sortRepos([...filtered, ...extras, ...sameOwnerForced], sortBy)
+    }
 
     return (
         <GitHubProjectsClient
