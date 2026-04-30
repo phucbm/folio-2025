@@ -11,6 +11,7 @@ import JsDelivrPackages from "@/components/jsdelivr";
 import Bookmarks from "@/components/bookmarks";
 import BooksPage from "@/components/goodreads/page";
 import {Gap} from "@/components/gap";
+import {Diviver} from "@/components/diviver";
 import {Ticker} from "@/components/ticker";
 import {StatusBar} from "@/components/status-bar";
 import {HeroName} from "@/components/hero-name";
@@ -76,6 +77,7 @@ export function useMDXComponents() {
         Bookmarks: Bookmarks,
         BooksPage: BooksPage,
         Gap: Gap,
+        Diviver: Diviver,
         Ticker: Ticker,
         StatusBar: StatusBar,
         HeroName: HeroName,
