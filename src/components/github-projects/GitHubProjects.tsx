@@ -85,7 +85,7 @@ export default async function GitHubProjects({
     return (
         <GitHubProjectsClient
             repos={merged}
-            filterSummary={{hasTag, starCountMin, hasWebsiteLink, hasDescription, excludeArchived, editedThisYear}}
+            filterSummary={onlyInclude ? undefined : {hasTag, starCountMin, hasWebsiteLink, hasDescription, excludeArchived, editedThisYear}}
             hideFilter={hideFilter}
         />
     )

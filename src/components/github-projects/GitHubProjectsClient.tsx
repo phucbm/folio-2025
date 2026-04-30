@@ -1,14 +1,8 @@
 'use client'
 
 import {useState, useEffect} from 'react'
-import Image from 'next/image'
 import {Link} from 'next-view-transitions'
 import {GitHubRepo, GitHubProjectsFilterSummary} from './types'
-import {repoOgImage} from './utils'
-import {LinkBlockHover} from '@/components/link-block-hover'
-import {Badge} from '@/components/ui/badge'
-import {Button} from '@/components/ui/button'
-import {IconStarFilled, IconExternalLink} from '@tabler/icons-react'
 
 interface GitHubProjectsClientProps {
     repos: GitHubRepo[]
@@ -17,14 +11,14 @@ interface GitHubProjectsClientProps {
 }
 
 const LANGUAGE_COLORS: Record<string, string> = {
-    TypeScript: 'bg-blue-500',
-    JavaScript: 'bg-yellow-400',
-    Python: 'bg-green-500',
-    CSS: 'bg-pink-500',
-    HTML: 'bg-orange-500',
-    Vue: 'bg-emerald-500',
-    PHP: 'bg-indigo-400',
-    Shell: 'bg-gray-500',
+    TypeScript: '#3178c6',
+    JavaScript: '#f1e05a',
+    Python: '#3572A5',
+    CSS: '#563d7c',
+    HTML: '#e34c26',
+    Vue: '#41b883',
+    PHP: '#4F5D95',
+    Shell: '#89e051',
 }
 
 function formatDate(iso: string) {
@@ -49,7 +43,7 @@ function FilterSummaryLine({summary, total, showing}: {
     if (summary.editedThisYear) parts.push('edited this year')
 
     return (
-        <p className="text-xs text-muted-foreground mt-6">
+        <p className="text-xs text-muted-foreground mt-6 uppercase tracking-widest">
             Showing {showing}{showing !== total ? ` of ${total}` : ''} repo{total !== 1 ? 's' : ''}
             {parts.length > 0 && <> · {parts.join(' · ')}</>}
         </p>
@@ -80,128 +74,145 @@ export default function GitHubProjectsClient({repos, filterSummary, hideFilter}:
         : repos
 
     return (
-        <div>
+        <div className="not-prose">
+            {/* Filter bar */}
             {!hideFilter && allTags.length > 0 && (
-                <div className="mb-6 flex flex-wrap gap-2">
-                    <Button
+                <div className="mb-0 flex flex-wrap gap-0 border-t border-l border-border">
+                    <button
                         onClick={() => handleTagChange('')}
-                        variant={selectedTag === '' ? 'default' : 'outline'}
-                        size="sm"
-                        className="cursor-pointer"
+                        className={`px-3 py-1.5 text-xs uppercase tracking-widest border-r border-b border-border cursor-pointer transition-colors ${
+                            selectedTag === ''
+                                ? 'text-[#0033FF] bg-[#0033FF]/10'
+                                : 'hover:bg-muted text-muted-foreground'
+                        }`}
+                        style={selectedTag === '' ? {borderColor: '#0033FF'} : {}}
                     >
                         All ({repos.length})
-                    </Button>
+                    </button>
                     {allTags.map(tag => {
                         const count = repos.filter(r => r.topics.includes(tag)).length
+                        const active = selectedTag === tag
                         return (
-                            <Button
+                            <button
                                 key={tag}
                                 onClick={() => handleTagChange(tag)}
-                                variant={selectedTag === tag ? 'default' : 'outline'}
-                                size="sm"
-                                className="cursor-pointer"
+                                className={`px-3 py-1.5 text-xs uppercase tracking-widest border-r border-b border-border cursor-pointer transition-colors ${
+                                    active
+                                        ? 'text-[#0033FF] bg-[#0033FF]/10'
+                                        : 'hover:bg-muted text-muted-foreground'
+                                }`}
+                                style={active ? {borderColor: '#0033FF'} : {}}
                             >
                                 {tag} ({count})
-                            </Button>
+                            </button>
                         )
                     })}
                 </div>
             )}
 
+            {/* Grid */}
             {filtered.length === 0 ? (
-                <div className="text-muted-foreground text-center py-8">No repos found for this tag</div>
+                <div className="border border-border px-4 py-8 text-center text-xs text-muted-foreground uppercase tracking-widest">
+                    No repos found for this tag
+                </div>
             ) : (
-                <ul className="space-y-8 not-prose pt-4">
+                <div className="grid sm:grid-cols-2 border-t border-l border-foreground">
                     {filtered.map(repo => {
-                        const thumbnail = repoOgImage(repo.full_name)
+                        const color = repo.language ? LANGUAGE_COLORS[repo.language] : null
                         return (
-                            <li key={repo.id}>
-                                <LinkBlockHover>
-                                    <div className="flex items-start mb-6 relative z-20">
-                                        {/* Thumbnail */}
-                                        <div className="overflow-hidden rounded-xs md:rounded-sm w-[20%] ring ring-gray-200 dark:ring-black/20 shrink-0">
-                                            <Image
-                                                src={thumbnail}
-                                                alt=""
-                                                width={800}
-                                                height={400}
-                                                className="w-full h-auto object-cover"
-                                                unoptimized
-                                            />
-                                        </div>
-
-                                        {/* Content */}
-                                        <div className="w-[80%] pl-2 md:pl-4 space-y-1.5">
-                                            {/* Title row */}
-                                            <div className="flex items-center gap-2 flex-wrap font-[500]">
-                                                <Link
-                                                    href={repo.html_url}
+                            <div
+                                key={repo.id}
+                                className="border-r border-b border-foreground hover:bg-muted transition-colors group flex flex-col overflow-hidden"
+                            >
+                                {/* Body */}
+                                <div className="px-4 py-4 flex flex-col sm:min-h-48 sm:aspect-square">
+                                    {/* TOP: title + url */}
+                                    <div className="flex flex-col gap-1 mb-auto">
+                                        {/* Title row: name left, stars right */}
+                                        <div className="flex items-start justify-between gap-3">
+                                            <Link
+                                                href={repo.html_url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="font-bold uppercase tracking-wide text-sm leading-tight text-foreground hover:text-[#0033FF] transition-colors min-w-0 break-words"
+                                            >
+                                                {repo.name}
+                                            </Link>
+                                            {repo.stargazers_count > 0 ? (
+                                                <span className="text-xs font-bold tracking-widest text-yellow-500 shrink-0">
+                                                    ★ {repo.stargazers_count}
+                                                </span>
+                                            ) : (
+                                                <a
+                                                    href={`${repo.html_url}/stargazers`}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="text-black dark:text-white hover:underline"
+                                                    className="text-xs text-muted-foreground hover:text-[#0033FF] transition-colors shrink-0"
                                                 >
-                                                    {repo.name}
-                                                </Link>
-
-                                                <span className="flex items-center gap-1 text-sm text-yellow-500">
-                                                    <IconStarFilled className="w-3.5 h-3.5"/>
-                                                    {repo.stargazers_count}
-                                                </span>
-
-                                                {repo.is_template && <Badge variant="secondary">Template</Badge>}
-                                                {repo.archived && <Badge variant="secondary">Archived</Badge>}
-                                            </div>
-
-                                            {/* Description */}
-                                            {repo.description && (
-                                                <p className="text-muted-foreground">{repo.description}</p>
-                                            )}
-
-                                            {/* Meta row */}
-                                            <div className="flex items-center gap-3 flex-wrap text-xs text-muted-foreground">
-                                                {repo.language && (
-                                                    <span className="flex items-center gap-1">
-                                                        <span className={`w-2.5 h-2.5 rounded-full ${LANGUAGE_COLORS[repo.language] ?? 'bg-gray-400'}`}/>
-                                                        {repo.language}
-                                                    </span>
-                                                )}
-                                                <span>Updated {formatDate(repo.updated_at)}</span>
-                                                {repo.homepage && (
-                                                    <a
-                                                        href={repo.homepage}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className="flex items-center gap-1 hover:underline"
-                                                    >
-                                                        <IconExternalLink className="w-3 h-3"/>
-                                                        Website
-                                                    </a>
-                                                )}
-                                            </div>
-
-                                            {/* Topics */}
-                                            {repo.topics.length > 0 && (
-                                                <div className="flex flex-wrap gap-1 pt-0.5">
-                                                    {repo.topics.map(tag => (
-                                                        <button
-                                                            key={tag}
-                                                            onClick={() => handleTagChange(selectedTag === tag ? '' : tag)}
-                                                            className="cursor-pointer"
-                                                        >
-                                                            <Badge variant={selectedTag === tag ? 'default' : 'secondary'}>
-                                                                {tag}
-                                                            </Badge>
-                                                        </button>
-                                                    ))}
-                                                </div>
+                                                    first star?
+                                                </a>
                                             )}
                                         </div>
+
+                                        {/* Homepage URL */}
+                                        {repo.homepage && (
+                                            <a
+                                                href={repo.homepage}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="text-xs text-muted-foreground hover:text-[#0033FF] transition-colors truncate"
+                                            >
+                                                {repo.homepage.replace(/^https?:\/\//, '').replace(/\/$/, '')}
+                                            </a>
+                                        )}
                                     </div>
-                                </LinkBlockHover>
-                            </li>
+
+                                    {/* BOTTOM: desc + tags + meta */}
+                                    <div className="flex flex-col gap-2 mt-4 overflow-hidden">
+                                        {/* Description */}
+                                        {repo.description && (
+                                            <p className="text-xs text-muted-foreground leading-relaxed m-0">{repo.description}</p>
+                                        )}
+
+                                        {/* Archived */}
+                                        {repo.archived && (
+                                            <span className="text-xs uppercase tracking-widest text-muted-foreground">[archived]</span>
+                                        )}
+
+                                        {/* Topics */}
+                                        {repo.topics.length > 0 && (
+                                            <p className="text-xs text-muted-foreground">
+                                                {repo.topics.map((tag, i) => (
+                                                    <span key={tag}>
+                                                        {i > 0 && <span className="mx-1 opacity-40">·</span>}
+                                                        {hideFilter ? (
+                                                            <span className={selectedTag === tag ? 'text-[#0033FF]' : ''}>{tag}</span>
+                                                        ) : (
+                                                            <button
+                                                                onClick={() => handleTagChange(selectedTag === tag ? '' : tag)}
+                                                                className={`cursor-pointer hover:text-foreground transition-colors ${selectedTag === tag ? 'text-[#0033FF]' : ''}`}
+                                                            >
+                                                                {tag}
+                                                            </button>
+                                                        )}
+                                                    </span>
+                                                ))}
+                                            </p>
+                                        )}
+
+                                        {/* Footer meta */}
+                                        <div className="flex items-center gap-2 border-t border-foreground/20 pt-2 text-xs text-muted-foreground uppercase tracking-widest">
+                                            {color && (
+                                                <span className="w-2 h-2 shrink-0" style={{backgroundColor: color}}/>
+                                            )}
+                                            {repo.language ?? '—'} · {formatDate(repo.updated_at)}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         )
                     })}
-                </ul>
+                </div>
             )}
 
             {filterSummary && (

@@ -21,6 +21,9 @@ export const MenuBar: FC<NavbarProps> = async ({children, className}) => {
 
     const items = [
         {
+            href: '/shipped',
+            title: "Shipped"
+        }, {
             href: '/bookmarks',
             title: "Bookmarks"
         },
