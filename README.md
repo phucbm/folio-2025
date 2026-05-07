@@ -1,6 +1,6 @@
-# phucbm-web
+# folio-2025
 
-Personal website of [@phucbm](https://github.com/phucbm). Built with Next.js 15, Nextra 4, Tailwind CSS v4, and shadcn/ui.
+Personal website of [@phucbm](https://github.com/phucbm). Built with Next.js 16, Nextra 4, Tailwind CSS v4, and shadcn/ui.
 
 > This repository is archived. Active development continues in a fork.
 
